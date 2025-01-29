@@ -13,17 +13,20 @@ public class OptionsMenu : MonoBehaviour
     public Toggle fullscreenToggle;
     public Button applyButton;
     public TMP_Text saveMessage; // Text to display when settings are applied
+    public Image savingImage; // The rotating saving image
 
     private float tempVolume;
     private bool tempFullscreen;
     private Resolution[] resolutions;
     private List<string> resolutionOptions = new List<string>();
     private int currentResolutionIndex;
+    private bool isSaving = false;
 
     private void Start()
     {
         optionsPanel.SetActive(false);
-        saveMessage.gameObject.SetActive(false); // Hide the message at the start
+        saveMessage.gameObject.SetActive(false); // Hide message initially
+        savingImage.enabled = false; // Hide saving image initially
 
         // Load saved settings or set default values
         float savedVolume = PlayerPrefs.HasKey("Volume") ? PlayerPrefs.GetFloat("Volume") : 0.5f;
@@ -66,6 +69,15 @@ public class OptionsMenu : MonoBehaviour
         applyButton.onClick.AddListener(ApplySettings);
     }
 
+    private void Update()
+    {
+        // Rotate the saving image while saving
+        if (isSaving && savingImage.enabled)
+        {
+            savingImage.transform.Rotate(0, 0, 200 * Time.deltaTime);
+        }
+    }
+
     public void OpenOptions()
     {
         optionsPanel.SetActive(true);
@@ -92,8 +104,28 @@ public class OptionsMenu : MonoBehaviour
         Debug.Log("Settings Applied: Volume = " + (tempVolume * 100) + "%, Fullscreen = " + tempFullscreen +
                   ", Resolution = " + resolutionOptions[resolutionDropdown.value]);
 
+        // Show and rotate the saving image
+        StartCoroutine(ShowSavingImage());
+
         // Show save confirmation message
         StartCoroutine(ShowSaveMessage());
+    }
+
+    private IEnumerator ShowSavingImage()
+    {
+        isSaving = true;
+        savingImage.enabled = true;
+        yield return new WaitForSeconds(2.5f);
+        isSaving = false;
+        savingImage.enabled = false;
+    }
+
+    private IEnumerator ShowSaveMessage()
+    {
+        saveMessage.gameObject.SetActive(true);
+        saveMessage.text = "Saving...";
+        yield return new WaitForSeconds(2.5f);
+        saveMessage.gameObject.SetActive(false);
     }
 
     private void UpdateVolumeText(float volume)
@@ -105,13 +137,5 @@ public class OptionsMenu : MonoBehaviour
     private void SetResolution(int index)
     {
         currentResolutionIndex = index;
-    }
-
-    private IEnumerator ShowSaveMessage()
-    {
-        saveMessage.gameObject.SetActive(true);
-        saveMessage.text = "Saving...!";
-        yield return new WaitForSeconds(2.5f);
-        saveMessage.gameObject.SetActive(false);
     }
 }

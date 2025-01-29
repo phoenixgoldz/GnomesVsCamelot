@@ -3,26 +3,53 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject optionsMenu; // Assign in Unity Inspector
+
     public void NewGame()
     {
-        SceneManager.LoadScene("GameScene"); // Change "GameScene" to your actual game scene name
+        // Load the main game scene
+        SceneManager.LoadScene("GameScene");
     }
 
     public void LoadGame()
     {
-        // Implement Load Game functionality (e.g., Load saved data)
-        Debug.Log("Load Game Clicked - Implement save/load system");
+        // Implement Load Game functionality
+        if (PlayerPrefs.HasKey("SavedScene"))
+        {
+            string savedScene = PlayerPrefs.GetString("SavedScene");
+            SceneManager.LoadScene(savedScene); // Load last saved scene
+            Debug.Log("Loading saved game: " + savedScene);
+        }
+        else
+        {
+            Debug.Log("No saved game found!");
+        }
     }
 
     public void OpenOptions()
     {
-        // Implement Options Menu logic (e.g., opening another UI panel)
-        Debug.Log("Options Menu Opened");
+        if (optionsMenu != null)
+        {
+            optionsMenu.SetActive(true);
+            Debug.Log("Options Menu Opened");
+        }
+        else
+        {
+            Debug.LogError("OptionsMenu GameObject is not assigned in the Inspector!");
+        }
+    }
+
+    public void CloseOptions()
+    {
+        if (optionsMenu != null)
+        {
+            optionsMenu.SetActive(false);
+        }
     }
 
     public void ExitGame()
     {
         Debug.Log("Exit Game Clicked");
-        Application.Quit(); // Exits the game (only works in a built application)
+        Application.Quit(); 
     }
 }
