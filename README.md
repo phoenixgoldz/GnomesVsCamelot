@@ -4,7 +4,7 @@
 
 🛠 **Developed for:** **Android & PC**  
 
-![Gnomes vs Knights](GnomesVsKnights/GnomeVsKnights/Assets/Images/GnomesvsKnightsTitle2.png)
+![Gnomes vs Knights](GnomeVsKnights/Assets/Images/GnomesvsKnightsTitle2.png)
 
 ---
 
