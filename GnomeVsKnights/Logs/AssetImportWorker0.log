@@ -679,3 +679,11 @@ Memory consumption went from 155.7 MB to 148.0 MB.
 Total: 10.775300 ms (FindLiveObjects: 0.616200 ms CreateObjectMapping: 0.572600 ms MarkObjects: 5.193800 ms  DeleteObjects: 4.391200 ms)
 
 Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time since last request: 1149.952326 seconds.
+  path: Assets/Images/mainImg.png
+  artifactKey: Guid(750b4fd2a166ecc45855b85b0bc0e4fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Images/mainImg.png using Guid(750b4fd2a166ecc45855b85b0bc0e4fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '121640ec5e2d1ac11a3a87be37b11608') in 0.0994299 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
