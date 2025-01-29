@@ -73,3 +73,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 /GnomeVsKnights/Library
 /GnomeVsKnights/Temp
+*.log
+/GnomeVsKnights/Logs
+*.log
