@@ -77,4 +77,6 @@ crashlytics-build.properties
 /GnomeVsKnights/Logs
 *.log
 /GnomeVsKnights/Logs
+/GnomeVsKnights/UserSettings
+/GnomeVsKnights/obj/Debug
 /GnomeVsKnights/Logs
