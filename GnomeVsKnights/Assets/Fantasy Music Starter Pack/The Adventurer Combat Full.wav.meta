@@ -1,0 +1,30 @@
+fileFormatVersion: 2
+guid: e1ac7c138e93c2a4e964212c2d2aefe8
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 7
+  defaultSettings:
+    serializedVersion: 2
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 44100
+    compressionFormat: 1
+    quality: 1
+    conversionMode: 0
+    preloadAudioData: 0
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  loadInBackground: 0
+  ambisonic: 0
+  3D: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 296991
+  packageName: Fantasy Music Starter Pack - Orchestral Music (FREE Pack)
+  packageVersion: 1.0
+  assetPath: Assets/Fantasy Music Starter Pack/The Adventurer Combat Full.wav
+  uploadId: 694449
