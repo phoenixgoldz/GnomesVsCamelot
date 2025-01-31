@@ -2,7 +2,7 @@
 
 **Gnomes vs Knights** is a **Plants vs. Zombies knockoff** tower defense game built in **Unity Engine 6**, where **gnomes** defend their enchanted forest against invading **knights**.
 
-🛠 **Developed for:** **Android & PC**  
+🛠 **Developed for:** **Android devices**  
 
 ![Gnomes vs Knights](GnomeVsKnights/Assets/Images/GnomesvsKnightsTitle2.png)
 
@@ -13,27 +13,19 @@
 - **Unique Gnome Units** – Shooters, blockers, bombers, and more.
 - **Progressive Enemy Waves** – Different types of knights with increasing difficulty.
 - **Fantasy-Themed World** – Explore a magical forest setting with vibrant visuals.
-- **Optimized for Android & PC** – Designed to run smoothly on both **touch and keyboard/mouse controls**.
+- **Optimized for Android** – Designed to run smoothly using **touch controls**.
 
 ---
 
 ## 📜 How to Play
 1. **Start a new game** from the main menu.
-2. **Place gnome defenders** strategically on the grid.
-3. **Defend against waves** of knights.
+2. **Place gnome defenders** strategically on the grid to defned your Forest home.
+3. **Defend against waves** of knights who are trying to take over the gnomes magical Forest.
 4. **Survive and win!** Earn rewards and unlock more units.
 
 ---
 
 ## 🛠️ Installation
-
-### **PC (Windows, Linux, Mac)**
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/yourusername/GnomesVsKnights.git
-   ```
-2. Open the project in **Unity Engine 6**.
-3. Build and run the game for your preferred platform.
 
 ### **Android**
 1. Download the APK from the official source (TBD).
