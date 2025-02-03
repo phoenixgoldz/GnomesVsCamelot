@@ -8,9 +8,9 @@ public class OptionsMenu : MonoBehaviour
 {
     public GameObject optionsPanel;
     public Slider musicVolumeSlider;
-    public Slider sfxVolumeSlider;
+    public Slider SoundVolumeSlider;
     public TMP_Text musicVolumeText;
-    public TMP_Text sfxVolumeText;
+    public TMP_Text SoundVolumeText;
     public Toggle subtitlesToggle;
     public Button applyButton;
     public Button restoreDefaultsButton;
@@ -26,7 +26,7 @@ public class OptionsMenu : MonoBehaviour
     public AudioClip[] musicTracks;
 
     private float tempMusicVolume;
-    private float tempSfxVolume;
+    private float tempSoundVolume;
     private bool tempSubtitles;
 
     private void Start()
@@ -37,12 +37,12 @@ public class OptionsMenu : MonoBehaviour
 
         // Load saved settings
         tempMusicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
-        tempSfxVolume = PlayerPrefs.GetFloat("SfxVolume", 0.5f);
+        tempSoundVolume = PlayerPrefs.GetFloat("SoundVolume", 0.5f);
         tempSubtitles = PlayerPrefs.GetInt("Subtitles", 1) == 1;
 
         // Apply settings to UI
         musicVolumeSlider.value = tempMusicVolume;
-        sfxVolumeSlider.value = tempSfxVolume;
+        SoundVolumeSlider.value = tempSoundVolume;
         subtitlesToggle.isOn = tempSubtitles;
 
         // Populate music selection dropdown
@@ -55,7 +55,7 @@ public class OptionsMenu : MonoBehaviour
         
         // Add Listeners
         musicVolumeSlider.onValueChanged.AddListener(UpdateMusicVolume);
-        sfxVolumeSlider.onValueChanged.AddListener(UpdateSfxVolume);
+        SoundVolumeSlider.onValueChanged.AddListener(UpdateSoundVolume);
         subtitlesToggle.onValueChanged.AddListener(value => tempSubtitles = value);
         applyButton.onClick.AddListener(() => { PlayButtonSound(); ApplySettings(); });
         restoreDefaultsButton.onClick.AddListener(() => { PlayButtonSound(); RestoreDefaults(); });
@@ -76,18 +76,18 @@ public class OptionsMenu : MonoBehaviour
     public void ApplySettings()
     {
         PlayerPrefs.SetFloat("MusicVolume", tempMusicVolume);
-        PlayerPrefs.SetFloat("SfxVolume", tempSfxVolume);
+        PlayerPrefs.SetFloat("SoundVolume", tempSoundVolume);
         PlayerPrefs.SetInt("Subtitles", tempSubtitles ? 1 : 0);
         PlayerPrefs.Save();
 
-        //Debug.Log("Settings Applied: Music Volume = " + (tempMusicVolume * 100) + "%", "SFX Volume = " + (tempSfxVolume * 100) + "%", "Subtitles = " + tempSubtitles);
+        //Debug.Log("Settings Applied: Music Volume = " + (tempMusicVolume * 100) + "%", "SoundVolume = " + (tempSoundVolume * 100) + "%", "Subtitles = " + tempSubtitles);
         StartCoroutine(ShowSaveMessage());
     }
 
     public void RestoreDefaults()
     {
         musicVolumeSlider.value = 0.5f;
-        sfxVolumeSlider.value = 0.5f;
+        SoundVolumeSlider.value = 0.5f;
         subtitlesToggle.isOn = true;
         musicSelectionDropdown.value = 0;
     }
@@ -99,11 +99,11 @@ public class OptionsMenu : MonoBehaviour
         audioMixer.SetFloat("MusicVolume", Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20);
     }
 
-    private void UpdateSfxVolume(float volume)
+    private void UpdateSoundVolume(float volume)
     {
-        tempSfxVolume = volume;
-        sfxVolumeText.text = Mathf.RoundToInt(volume * 100) + "%";
-        audioMixer.SetFloat("SfxVolume", Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20);
+        tempSoundVolume = volume;
+        SoundVolumeText.text = Mathf.RoundToInt(volume * 100) + "%";
+        audioMixer.SetFloat("SoundVolume", Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20);
     }
 
     private IEnumerator ShowSaveMessage()
