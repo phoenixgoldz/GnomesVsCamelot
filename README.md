@@ -1,17 +1,21 @@
-# **Mythic Gnomes: The Last Stand**  
+Here’s the updated README file with the new **Gnomes vs Camelot** title and updated references:
 
-**Mythic Gnomes: The Last Stand** is a **lane-based tower defense game** inspired by *Plants vs. Zombies*. Built in **Unity 6**, this game brings a fresh fantasy twist where **gnomes** defend their enchanted forest against invading **knights** in strategic, wave-based battles.  
+---
+
+# **Gnomes vs Camelot**  
+
+**Gnomes vs Camelot** is a **lane-based tower defense game** inspired by *Plants vs. Zombies*. Built in **Unity 6**, this game brings a fresh fantasy twist where **gnomes** defend their enchanted forest against invading **knights of Camelot** in strategic, wave-based battles.  
 
 🛠 **Platform:** **Android**  
 
-![Mythic Gnomes: The Last Stand](GnomeVsKnights/Assets/Images/mystic%20gnomes%20banner.png)
+![Gnomes vs Camelot](GnomeVsCamelot/Assets/Images/gnomes_vs_camelot_banner.png)
 
 ---
 
 ## 📖 **Storyline**  
 In the mystical land of **Elderglen**, the **gnomes** have lived peacefully for centuries, guarding the sacred **Tree of Everlight**, the source of all magic.  
 
-But peace is shattered when the ruthless **King Albrecht** and his **Ironclad Knights** invade, seeking to claim the tree’s power for themselves.  
+But peace is shattered when the legendary **Knights of Camelot**, led by the ruthless **King Albrecht**, invade, seeking to claim the tree’s power for themselves.  
 
 Now, the gnomes must use their **wit, magic, and nature’s defenses** to **hold the line**. If the knights reach the Everlight, magic will be lost forever!  
 
@@ -21,7 +25,11 @@ Now, the gnomes must use their **wit, magic, and nature’s defenses** to **hold
 
 ✅ **Classic Lane-Based Strategy** – Inspired by *Plants vs. Zombies*, with a unique fantasy setting.  
 ✅ **Tactical Gnome Defenders** – Deploy various gnomes with unique abilities to protect your land.  
-✅ **Challenging Enemy Waves** – Fight against a variety of knights, from foot soldiers to siege weapons.  
+✅ **Challenging Enemy Waves** – Face a variety of knights, including:  
+   - **Camelot Foot Soldiers** – Standard knights marching forward.  
+   - **Shield Bearers** – Defenders that block projectiles.  
+   - **Siege Engineers** – Launching boulders at gnome defenses.  
+   - **Mage Knights** – Casting spells to disrupt your formation.  
 ✅ **Dynamic Abilities & Magic** – Summon **lightning strikes, healing fountains, and enchanted defenses** to aid your forces.  
 ✅ **Beautiful Fantasy World** – Vibrant visuals, magical forests, and detailed character animations.  
 ✅ **Smooth Mobile Experience** – Intuitive **touch controls** and optimized performance for **Android devices**.  
@@ -49,4 +57,4 @@ Now, the gnomes must use their **wit, magic, and nature’s defenses** to **hold
 
 ## 📢 **Follow for Updates!**  
 
-Stay tuned for **new content, updates, and exclusive features!**
+Stay tuned for **new content, updates, and exclusive features!**  
