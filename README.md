@@ -4,11 +4,11 @@ Here’s the updated README file with the new **Gnomes vs Camelot** title and up
 
 # **Gnomes vs Camelot**  
 
-**Gnomes vs Camelot** is a **lane-based tower defense game** inspired by *Plants vs. Zombies*. Built in **Unity 6**, this game brings a fresh fantasy twist where **gnomes** defend their enchanted forest against invading **knights of Camelot** in strategic, wave-based battles.  
+**Gnomes vs Camelot** is a **lane-based tower defense game** inspired by *Plants vs. Zombies*. Built-in **Unity 6**, this game brings a fresh fantasy twist where **gnomes** defend their enchanted forest against invading **knights of Camelot** in strategic, wave-based battles.  
 
 🛠 **Platform:** **Android**  
 
-![Gnomes vs Camelot](GnomeVsCamelot/Assets/Images/GameBanner.png)
+![Gnomes vs Camelot](GnomeVsKnights/Assets/Images/GameBanner.png)
 
 ---
 
