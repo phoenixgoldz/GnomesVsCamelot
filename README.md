@@ -8,7 +8,7 @@ Here’s the updated README file with the new **Gnomes vs Camelot** title and up
 
 🛠 **Platform:** **Android**  
 
-![Gnomes vs Camelot](GnomeVsCamelot/Assets/Images/gnomes_vs_camelot_banner.png)
+![Gnomes vs Camelot](GnomeVsCamelot/Assets/Images/GameBanner.png)
 
 ---
 
