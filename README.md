@@ -4,7 +4,7 @@
 
 🛠 **Developed for:** **Android devices**  
 
-![Mythic Gnomes: The Last Stand](mystic gnomes banner.png)  
+![Mythic Gnomes: The Last Stand](GnomeVsKnights/Assets/Images/mystic gnomes banner.png)
 
 ---  
 
