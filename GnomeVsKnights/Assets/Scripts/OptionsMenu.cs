@@ -1,86 +1,71 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Audio;
 using System.Collections;
-using System.Collections.Generic;
 
 public class OptionsMenu : MonoBehaviour
 {
     public GameObject optionsPanel;
-    public Slider volumeSlider;
-    public TMP_Text volumeText;
-    public Dropdown resolutionDropdown;
-    public Toggle fullscreenToggle;
+    public Slider musicVolumeSlider;
+    public Slider SoundVolumeSlider;
+    public TMP_Text musicVolumeText;
+    public TMP_Text SoundVolumeText;
+    public Toggle subtitlesToggle;
     public Button applyButton;
-    public TMP_Text saveMessage; // Text to display when settings are applied
-    public Image savingImage; // The rotating saving image
+    public Button restoreDefaultsButton;
+    public Button closeButton;
+    public TMP_Text saveMessage;
+    public AudioSource buttonClickAudioSource;
+    public AudioClip buttonClickSound;
+    public Image savingImage;
+    public AudioMixer audioMixer;
+    public RectTransform savingImageTransform;
+    public Dropdown musicSelectionDropdown;
+    public AudioSource musicSource;
+    public AudioClip[] musicTracks;
 
-    private float tempVolume;
-    private bool tempFullscreen;
-    private Resolution[] resolutions;
-    private List<string> resolutionOptions = new List<string>();
-    private int currentResolutionIndex;
-    private bool isSaving = false;
+    private float tempMusicVolume;
+    private float tempSoundVolume;
+    private bool tempSubtitles;
 
     private void Start()
     {
         optionsPanel.SetActive(false);
-        saveMessage.gameObject.SetActive(false); // Hide message initially
-        savingImage.enabled = false; // Hide saving image initially
+        saveMessage.gameObject.SetActive(false);
+        savingImage.gameObject.SetActive(false);
 
-        // Load saved settings or set default values
-        float savedVolume = PlayerPrefs.HasKey("Volume") ? PlayerPrefs.GetFloat("Volume") : 0.5f;
-        bool savedFullscreen = PlayerPrefs.GetInt("Fullscreen", 1) == 1;
-        int savedResolutionIndex = PlayerPrefs.GetInt("ResolutionIndex", 0);
+        // Load saved settings
+        tempMusicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
+        tempSoundVolume = PlayerPrefs.GetFloat("SoundVolume", 0.5f);
+        tempSubtitles = PlayerPrefs.GetInt("Subtitles", 1) == 1;
 
-        // Apply volume settings
-        volumeSlider.value = savedVolume;
-        fullscreenToggle.isOn = savedFullscreen;
-        UpdateVolumeText(savedVolume);
+        // Apply settings to UI
+        musicVolumeSlider.value = tempMusicVolume;
+        SoundVolumeSlider.value = tempSoundVolume;
+        subtitlesToggle.isOn = tempSubtitles;
 
-        // Store temporary settings
-        tempVolume = savedVolume;
-        tempFullscreen = savedFullscreen;
-
-        // Populate resolution dropdown
-        resolutions = Screen.resolutions;
-        resolutionDropdown.ClearOptions();
-
-        for (int i = 0; i < resolutions.Length; i++)
+        // Populate music selection dropdown
+        musicSelectionDropdown.ClearOptions();
+        foreach (AudioClip track in musicTracks)
         {
-            string resolutionString = resolutions[i].width + " x " + resolutions[i].height;
-            resolutionOptions.Add(resolutionString);
-
-            if (resolutions[i].width == Screen.currentResolution.width &&
-                resolutions[i].height == Screen.currentResolution.height)
-            {
-                currentResolutionIndex = i;
-            }
+            musicSelectionDropdown.options.Add(new Dropdown.OptionData(track.name));
         }
-
-        resolutionDropdown.AddOptions(resolutionOptions);
-        resolutionDropdown.value = PlayerPrefs.HasKey("ResolutionIndex") ? savedResolutionIndex : currentResolutionIndex;
-        resolutionDropdown.RefreshShownValue();
-
+        musicSelectionDropdown.onValueChanged.AddListener(ChangeMusicTrack);
+        
         // Add Listeners
-        volumeSlider.onValueChanged.AddListener(UpdateVolumeText);
-        fullscreenToggle.onValueChanged.AddListener(value => tempFullscreen = value);
-        resolutionDropdown.onValueChanged.AddListener(SetResolution);
-        applyButton.onClick.AddListener(ApplySettings);
-    }
-
-    private void Update()
-    {
-        // Rotate the saving image while saving
-        if (isSaving && savingImage.enabled)
-        {
-            savingImage.transform.Rotate(0, 0, 200 * Time.deltaTime);
-        }
+        musicVolumeSlider.onValueChanged.AddListener(UpdateMusicVolume);
+        SoundVolumeSlider.onValueChanged.AddListener(UpdateSoundVolume);
+        subtitlesToggle.onValueChanged.AddListener(value => tempSubtitles = value);
+        applyButton.onClick.AddListener(() => { PlayButtonSound(); ApplySettings(); });
+        restoreDefaultsButton.onClick.AddListener(() => { PlayButtonSound(); RestoreDefaults(); });
+        closeButton.onClick.AddListener(() => { PlayButtonSound(); CloseOptions(); });
     }
 
     public void OpenOptions()
     {
         optionsPanel.SetActive(true);
+        PlayButtonSound();
     }
 
     public void CloseOptions()
@@ -90,52 +75,69 @@ public class OptionsMenu : MonoBehaviour
 
     public void ApplySettings()
     {
-        // Save settings
-        PlayerPrefs.SetFloat("Volume", tempVolume);
-        PlayerPrefs.SetInt("Fullscreen", tempFullscreen ? 1 : 0);
-        PlayerPrefs.SetInt("ResolutionIndex", resolutionDropdown.value);
+        PlayerPrefs.SetFloat("MusicVolume", tempMusicVolume);
+        PlayerPrefs.SetFloat("SoundVolume", tempSoundVolume);
+        PlayerPrefs.SetInt("Subtitles", tempSubtitles ? 1 : 0);
         PlayerPrefs.Save();
 
-        // Apply settings
-        AudioListener.volume = tempVolume;
-        Screen.fullScreen = tempFullscreen;
-        Screen.SetResolution(resolutions[resolutionDropdown.value].width, resolutions[resolutionDropdown.value].height, Screen.fullScreen);
-
-        Debug.Log("Settings Applied: Volume = " + (tempVolume * 100) + "%, Fullscreen = " + tempFullscreen +
-                  ", Resolution = " + resolutionOptions[resolutionDropdown.value]);
-
-        // Show and rotate the saving image
-        StartCoroutine(ShowSavingImage());
-
-        // Show save confirmation message
+        //Debug.Log("Settings Applied: Music Volume = " + (tempMusicVolume * 100) + "%", "SoundVolume = " + (tempSoundVolume * 100) + "%", "Subtitles = " + tempSubtitles);
         StartCoroutine(ShowSaveMessage());
     }
 
-    private IEnumerator ShowSavingImage()
+    public void RestoreDefaults()
     {
-        isSaving = true;
-        savingImage.enabled = true;
-        yield return new WaitForSeconds(2.5f);
-        isSaving = false;
-        savingImage.enabled = false;
+        musicVolumeSlider.value = 0.5f;
+        SoundVolumeSlider.value = 0.5f;
+        subtitlesToggle.isOn = true;
+        musicSelectionDropdown.value = 0;
+    }
+
+    private void UpdateMusicVolume(float volume)
+    {
+        tempMusicVolume = volume;
+        musicVolumeText.text = Mathf.RoundToInt(volume * 100) + "%";
+        audioMixer.SetFloat("MusicVolume", Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20);
+    }
+
+    private void UpdateSoundVolume(float volume)
+    {
+        tempSoundVolume = volume;
+        SoundVolumeText.text = Mathf.RoundToInt(volume * 100) + "%";
+        audioMixer.SetFloat("SoundVolume", Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20);
     }
 
     private IEnumerator ShowSaveMessage()
     {
+        savingImage.gameObject.SetActive(true);
         saveMessage.gameObject.SetActive(true);
         saveMessage.text = "Saving...";
-        yield return new WaitForSeconds(2.5f);
+        
+        float elapsedTime = 0f;
+        while (elapsedTime < 2.5f)
+        {
+            savingImageTransform.Rotate(0f, 0f, 100f * Time.deltaTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        
         saveMessage.gameObject.SetActive(false);
+        savingImage.gameObject.SetActive(false);
     }
 
-    private void UpdateVolumeText(float volume)
+    private void PlayButtonSound()
     {
-        volumeText.text = Mathf.RoundToInt(volume * 100) + "%";
-        tempVolume = volume;
+        if (buttonClickAudioSource != null && buttonClickSound != null)
+        {
+            buttonClickAudioSource.PlayOneShot(buttonClickSound);
+        }
     }
 
-    private void SetResolution(int index)
+    private void ChangeMusicTrack(int index)
     {
-        currentResolutionIndex = index;
+        if (musicTracks.Length > index && musicTracks[index] != null)
+        {
+            musicSource.clip = musicTracks[index];
+            musicSource.Play();
+        }
     }
 }
