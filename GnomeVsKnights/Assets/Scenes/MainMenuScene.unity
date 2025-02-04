@@ -4506,9 +4506,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   optionsPanel: {fileID: 990177676}
   musicVolumeSlider: {fileID: 239422313}
-  SoundVolumeSlider: {fileID: 0}
+  SoundVolumeSlider: {fileID: 239810503}
   musicVolumeText: {fileID: 17210192}
-  SoundVolumeText: {fileID: 0}
+  SoundVolumeText: {fileID: 1180693140}
   subtitlesToggle: {fileID: 1917734114}
   applyButton: {fileID: 301560392}
   restoreDefaultsButton: {fileID: 1392383042}
