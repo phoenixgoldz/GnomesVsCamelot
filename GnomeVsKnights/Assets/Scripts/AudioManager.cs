@@ -13,10 +13,6 @@ public class AudioManager : MonoBehaviour
 
     [Header("------Audio Clips-----")]
     public AudioClip backgroundMusic;
-    public AudioClip death;
-    public AudioClip attack;
-    public AudioClip spawnGnome;
-    public AudioClip spawnEnemy;
 
 
     private void Start()
@@ -24,4 +20,5 @@ public class AudioManager : MonoBehaviour
         MusicSource.clip = backgroundMusic;
         MusicSource.Play();
     }
+   
 }

@@ -50,7 +50,7 @@ public class OptionsMenu : MonoBehaviour
         PlayerPrefs.SetInt("Subtitles", tempSubtitles ? 1 : 0);
         PlayerPrefs.Save();
 
-        //Debug.Log("Settings Applied: Music Volume = " + (tempMusicVolume * 100) + "%", "SoundVolume = " + (tempSoundVolume * 100) + "%", "Subtitles = " + tempSubtitles);
+        Debug.LogFormat("Settings Applied: Music Volume = " + (tempMusicVolume * 100) + "%", "SoundVolume = " + (tempSoundVolume * 100) + "%", "Subtitles = " + tempSubtitles);
         StartCoroutine(ShowSaveMessage());
     }
 
