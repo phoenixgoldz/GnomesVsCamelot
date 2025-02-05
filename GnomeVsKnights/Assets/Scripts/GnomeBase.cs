@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class GnomeBase : MonoBehaviour
+public class GnomeBase : MonoBehaviour, Damageable
 {
     // -1 means no range, 10 means full map range
     [SerializeField] protected static int Range;
-    [SerializeField] protected static float Damage;
+    //[SerializeField] protected static float Damage;
     [SerializeField] protected static int Cost;
 
     [SerializeField] protected static float Health;
@@ -19,6 +19,7 @@ public class GnomeBase : MonoBehaviour
 
     [SerializeField] protected Transform RayOrigin;
     [SerializeField] protected LayerMask Enemies;
+    [SerializeField] protected GameObject AttackObject;
     protected void FixedUpdate()
     {
         //if (PlacementCooldown > 0) PlacementCooldown -= Time.fixedDeltaTime; // Cut for now because I'm not sure if this is where it will end up being
@@ -36,6 +37,17 @@ public class GnomeBase : MonoBehaviour
     }
 
     protected void Attack()
+    {
+        Instantiate(AttackObject);
+    }
+
+    public void ApplyDamage(float damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0) Death();
+    }
+
+    protected void Death()
     {
 
     }
