@@ -20,6 +20,7 @@ public class GnomeBase : MonoBehaviour, Damageable
     [SerializeField] protected Transform RayOrigin;
     [SerializeField] protected LayerMask Enemies;
     [SerializeField] protected GameObject AttackObject;
+    public Vector3Int cell;
     protected void FixedUpdate()
     {
         //if (PlacementCooldown > 0) PlacementCooldown -= Time.fixedDeltaTime; // Cut for now because I'm not sure if this is where it will end up being

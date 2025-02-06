@@ -1,13 +1,20 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class GameManager : Singleton<GameManager>
 {
     public GameObject[] placementPrefabs;
+    private GameObject[] fullGnomes;
     public Tilemap map;
     public Camera cam;
     private bool touchBegan = false;
     private GameObject placementIndicator = null;
+    public Dictionary<Vector3Int, GnomeBase> placedGnomes;
+    //public Dictionary<int, GameObject> knightQueue
+    public int knightQueueLocation = 0;
+    private int placementType = 0;
     public void InitiatePlacement(int type)
     {
         placementIndicator = Instantiate(placementPrefabs[type]);
@@ -31,12 +38,24 @@ public class GameManager : Singleton<GameManager>
             Vector3Int at = GetCell(GetWorld(getInputLocation()));
             if (at.x >= 0 && at.x <= 8 && at.y >= 0 && at.y <= 4)
             {
-                Debug.Log($"Placed at ({at.x}, {at.y})");
+                if (!placedGnomes.ContainsKey(at))
+                {
+                    GameObject gnome = Instantiate(fullGnomes[placementType]);
+                    gnome.transform.position = GetWorld(at) + map.cellSize * 0.5f;
+                    GnomeBase gnomeData = gnome.GetComponent<GnomeBase>();
+                    gnomeData.cell = at;
+                    placedGnomes.Add(at, gnomeData);
+                }
+                else
+                {
+                    Debug.Log("Not placed because occupied");
+                }
             }
             else
             {
                 Debug.Log($"Not placed because at ({at.x}, {at.y})");
             }
+
         }
     }
 
@@ -113,5 +132,28 @@ public class GameManager : Singleton<GameManager>
     public Vector3 GetWorld(Vector3 camera)
     {
         return cam.ScreenToWorldPoint(camera);
+    }
+
+    private void FixedUpdate()
+    {
+        //if(knightQueue.ContainsKey(knightQueueLocation)
+        //{
+            //foreach(GameObject knight in knightQueue[knightQueueLocation])
+            //{
+                //spawnKnight(knight);
+            //}
+        //}
+
+    }
+
+    public void KillGnome(Vector3Int at)
+    {
+        placedGnomes.Remove(at);
+    }
+
+    private void spawnKnight(GameObject knight)
+    {
+        Instantiate(knight);
+        knight.transform.position = GetWorld(new Vector3Int(9, 0, UnityEngine.Random.Range(0, 4))) + map.cellSize * 0.5f;
     }
 }
