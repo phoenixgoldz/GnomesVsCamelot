@@ -3,22 +3,18 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject optionsMenu; // Assign in Unity Inspector
-
     public void NewGame()
     {
-        // Load the main game scene
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("GameScene");  // Ensure "GameScene" is the correct scene name
     }
 
     public void LoadGame()
     {
-        // Implement Load Game functionality
+        // Placeholder for implementing a load game system
         if (PlayerPrefs.HasKey("SavedScene"))
         {
             string savedScene = PlayerPrefs.GetString("SavedScene");
-            SceneManager.LoadScene(savedScene); // Load last saved scene
-            Debug.Log("Loading saved game: " + savedScene);
+            SceneManager.LoadScene(savedScene);
         }
         else
         {
@@ -28,28 +24,13 @@ public class MainMenu : MonoBehaviour
 
     public void OpenOptions()
     {
-        if (optionsMenu != null)
-        {
-            optionsMenu.SetActive(true);
-            Debug.Log("Options Menu Opened");
-        }
-        else
-        {
-            Debug.LogError("OptionsMenu GameObject is not assigned in the Inspector!");
-        }
-    }
-
-    public void CloseOptions()
-    {
-        if (optionsMenu != null)
-        {
-            optionsMenu.SetActive(false);
-        }
+        Debug.Log("Options Menu Opened");
     }
 
     public void ExitGame()
     {
-        Debug.Log("Exit Game Clicked");
-        Application.Quit(); 
+        Debug.Log("Exiting Game...");
+        Application.Quit();
+        
     }
 }
