@@ -7,10 +7,7 @@ using System.Collections;
 public class OptionsMenu : MonoBehaviour
 {
     public GameObject optionsPanel;
-    public Slider musicVolumeSlider;
-    public Slider SoundVolumeSlider;
-    public TMP_Text musicVolumeText;
-    public TMP_Text SoundVolumeText;
+   
     public Toggle subtitlesToggle;
     public Button applyButton;
     public Button restoreDefaultsButton;
@@ -19,11 +16,7 @@ public class OptionsMenu : MonoBehaviour
     public AudioSource buttonClickAudioSource;
     public AudioClip buttonClickSound;
     public Image savingImage;
-    public AudioMixer audioMixer;
     public RectTransform savingImageTransform;
-    public Dropdown musicSelectionDropdown;
-    public AudioSource musicSource;
-    public AudioClip[] musicTracks;
 
     private float tempMusicVolume;
     private float tempSoundVolume;
@@ -34,31 +27,8 @@ public class OptionsMenu : MonoBehaviour
         optionsPanel.SetActive(false);
         saveMessage.gameObject.SetActive(false);
         savingImage.gameObject.SetActive(false);
-
-        // Load saved settings
-        tempMusicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
-        tempSoundVolume = PlayerPrefs.GetFloat("SoundVolume", 0.5f);
-        tempSubtitles = PlayerPrefs.GetInt("Subtitles", 1) == 1;
-
-        // Apply settings to UI
-        musicVolumeSlider.value = tempMusicVolume;
-        SoundVolumeSlider.value = tempSoundVolume;
-        subtitlesToggle.isOn = tempSubtitles;
-
-        // Populate music selection dropdown
-        musicSelectionDropdown.ClearOptions();
-        foreach (AudioClip track in musicTracks)
-        {
-            musicSelectionDropdown.options.Add(new Dropdown.OptionData(track.name));
-        }
-        musicSelectionDropdown.onValueChanged.AddListener(ChangeMusicTrack);
         
-        // Add Listeners
-        musicVolumeSlider.onValueChanged.AddListener(UpdateMusicVolume);
-        SoundVolumeSlider.onValueChanged.AddListener(UpdateSoundVolume);
-        subtitlesToggle.onValueChanged.AddListener(value => tempSubtitles = value);
-        applyButton.onClick.AddListener(() => { PlayButtonSound(); ApplySettings(); });
-        restoreDefaultsButton.onClick.AddListener(() => { PlayButtonSound(); RestoreDefaults(); });
+        restoreDefaultsButton.onClick.AddListener(() => { PlayButtonSound(); });
         closeButton.onClick.AddListener(() => { PlayButtonSound(); CloseOptions(); });
     }
 
@@ -80,30 +50,8 @@ public class OptionsMenu : MonoBehaviour
         PlayerPrefs.SetInt("Subtitles", tempSubtitles ? 1 : 0);
         PlayerPrefs.Save();
 
-        //Debug.Log("Settings Applied: Music Volume = " + (tempMusicVolume * 100) + "%", "SoundVolume = " + (tempSoundVolume * 100) + "%", "Subtitles = " + tempSubtitles);
+        Debug.LogFormat("Settings Applied: Music Volume = " + (tempMusicVolume * 100) + "%", "SoundVolume = " + (tempSoundVolume * 100) + "%", "Subtitles = " + tempSubtitles);
         StartCoroutine(ShowSaveMessage());
-    }
-
-    public void RestoreDefaults()
-    {
-        musicVolumeSlider.value = 0.5f;
-        SoundVolumeSlider.value = 0.5f;
-        subtitlesToggle.isOn = true;
-        musicSelectionDropdown.value = 0;
-    }
-
-    private void UpdateMusicVolume(float volume)
-    {
-        tempMusicVolume = volume;
-        musicVolumeText.text = Mathf.RoundToInt(volume * 100) + "%";
-        audioMixer.SetFloat("MusicVolume", Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20);
-    }
-
-    private void UpdateSoundVolume(float volume)
-    {
-        tempSoundVolume = volume;
-        SoundVolumeText.text = Mathf.RoundToInt(volume * 100) + "%";
-        audioMixer.SetFloat("SoundVolume", Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20);
     }
 
     private IEnumerator ShowSaveMessage()
@@ -131,13 +79,5 @@ public class OptionsMenu : MonoBehaviour
             buttonClickAudioSource.PlayOneShot(buttonClickSound);
         }
     }
-
-    private void ChangeMusicTrack(int index)
-    {
-        if (musicTracks.Length > index && musicTracks[index] != null)
-        {
-            musicSource.clip = musicTracks[index];
-            musicSource.Play();
-        }
-    }
+    
 }
