@@ -7,6 +7,7 @@ public class AttackBase : MonoBehaviour
     [SerializeField] protected LayerMask Targets;
     [SerializeField] protected float HitRadius;
     [SerializeField] protected float Damage;
+    [SerializeField] protected float AttackLifespan;
     [SerializeField] protected int HitCount = 1;
     protected int currentHits;
     private GameObject[] TargetsHit;
@@ -27,6 +28,7 @@ public class AttackBase : MonoBehaviour
             currentHits++;
         }
 
-        if (currentHits >= HitCount) Destroy(this);
+        AttackLifespan -= Time.fixedDeltaTime;
+        if (currentHits >= HitCount || AttackLifespan <= 0) Destroy(this);
     }
 }
