@@ -3,9 +3,9 @@ using UnityEngine.Tilemaps;
 
 public class GameManager : Singleton<GameManager>
 {
-    [SerializeField] private GameObject[] placementPrefabs;
-    [SerializeField] private Tilemap map;
-    [SerializeField] private Camera cam;
+    public GameObject[] placementPrefabs;
+    public Tilemap map;
+    public Camera cam;
     private bool touchBegan = false;
     private GameObject placementIndicator = null;
     public void InitiatePlacement(int type)
@@ -28,7 +28,7 @@ public class GameManager : Singleton<GameManager>
         {
             GameObject.Destroy(placementIndicator);
             placementIndicator = null;
-            Vector3Int at = GetCell(getInputLocation());
+            Vector3Int at = GetCell(GetWorld(getInputLocation()));
             if (at.x >= 0 && at.x <= 8 && at.y >= 0 && at.y <= 4)
             {
                 Debug.Log($"Placed at ({at.x}, {at.y})");
@@ -43,6 +43,7 @@ public class GameManager : Singleton<GameManager>
     private void updatePlacementIndicator()
     {
         placementIndicator.transform.position = GetWorld(GetCell(GetWorld(getInputLocation())));
+        placementIndicator.transform.position += map.cellSize * 0.5f;
     }
 
     private int getInput(int button)
@@ -60,7 +61,7 @@ public class GameManager : Singleton<GameManager>
         {
             result = 3;
         }
-        if(result == 0)
+        if(result == 0 && Input.touchSupported)
         {
             TouchPhase touchPhase = Input.GetTouch(button).phase;
             switch(touchPhase)
