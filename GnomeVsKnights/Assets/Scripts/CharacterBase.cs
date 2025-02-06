@@ -20,6 +20,7 @@ public class CharacterBase : MonoBehaviour, Damageable
     [SerializeField] protected LayerMask Targets;
     [SerializeField] protected GameObject AttackObject;
     [SerializeField] protected Animator animator;
+    protected Vector3 RayDirection;
 
     protected virtual void Start()
     {
@@ -35,7 +36,7 @@ public class CharacterBase : MonoBehaviour, Damageable
             RaycastHit hit;
             // change the equation to match the grid size
             float RayDistance = Range * 3;
-            if (Physics.Raycast(RayOrigin.position, Vector3.right, out hit, RayDistance, Targets))
+            if (Physics.Raycast(RayOrigin.position, RayDirection, out hit, RayDistance, Targets))
             {
                 Attack();
             }
