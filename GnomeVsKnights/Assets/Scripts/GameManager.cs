@@ -33,6 +33,10 @@ public class GameManager : Singleton<GameManager>
             {
                 Debug.Log($"Placed at ({at.x}, {at.y})");
             }
+            else
+            {
+                Debug.Log($"Not placed because at ({at.x}, {at.y})");
+            }
         }
     }
 
