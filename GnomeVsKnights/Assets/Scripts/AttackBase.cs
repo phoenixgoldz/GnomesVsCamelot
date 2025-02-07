@@ -7,8 +7,9 @@ public class AttackBase : MonoBehaviour
     [SerializeField] protected LayerMask Targets;
     [SerializeField] protected float HitRadius;
     [SerializeField] protected float Damage;
+    [SerializeField] protected float AttackLifespan;
     [SerializeField] protected int HitCount = 1;
-    protected int currentHits;
+    protected int currentHits = 0;
     private GameObject[] TargetsHit;
 
     void Start()
@@ -19,14 +20,18 @@ public class AttackBase : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, HitRadius, Vector3.right, Mathf.Infinity, Targets);
-        Damageable damaged = hit.collider.GetComponent<Damageable>();
-        if (damaged != null && !TargetsHit.Contains(hit.collider.gameObject))
+        if (hit != null && hit.collider != null)
         {
-            damaged.ApplyDamage(Damage);
-            TargetsHit[currentHits] = hit.collider.gameObject;
-            currentHits++;
+            Damageable damaged = hit.collider.GetComponent<Damageable>();
+            if (damaged != null && !TargetsHit.Contains(hit.collider.gameObject))
+            {
+                damaged.ApplyDamage(Damage);
+                TargetsHit[currentHits] = hit.collider.gameObject;
+                currentHits++;
+            }
         }
 
-        if (currentHits >= HitCount) Destroy(this);
+        AttackLifespan -= Time.fixedDeltaTime;
+        if (currentHits > HitCount || AttackLifespan <= 0) Destroy(gameObject);
     }
 }
