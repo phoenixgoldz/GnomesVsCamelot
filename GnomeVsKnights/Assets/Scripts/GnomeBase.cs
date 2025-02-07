@@ -9,6 +9,7 @@ public class GnomeBase : CharacterBase
         RayDirection = Vector3.right;
         base.FixedUpdate();
     }
+    public Vector3Int Cell { get; set; }
 
     public void OnDrawGizmosSelected()
     {
