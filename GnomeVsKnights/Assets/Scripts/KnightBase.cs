@@ -1,23 +1,118 @@
 using UnityEngine;
 
-public class KnightBase : CharacterBase
+public class KnightBase : MonoBehaviour
 {
-    [SerializeField] protected float MoveSpeed;
+    [Header("Movement")]
+    [SerializeField] private float moveSpeed = 1f; 
 
-    protected override void FixedUpdate()
+    [Header("Attack")]
+    [SerializeField] private int attackDamage = 10; 
+    [SerializeField] private float attackRange = 0.5f; 
+    [SerializeField] private float attackCooldown = 1f; 
+    [SerializeField] private LayerMask targetLayer; 
+
+    [Header("Health")]
+    [SerializeField] private int maxHealth = 50; 
+    private int currentHealth;
+
+    private float attackTimer = 0f; 
+    private bool isAttacking = false; 
+    private Animator animator; 
+
+    private void Start()
     {
-        RayDirection = Vector3.left;
-        base.FixedUpdate();
-        transform.position = new Vector3(transform.position.x - (MoveSpeed * Time.fixedDeltaTime), transform.position.y, transform.position.z);
+        currentHealth = maxHealth; 
+        animator = GetComponent<Animator>(); 
     }
 
-
-    public void OnDrawGizmosSelected()
+    private void Update()
     {
-        //RaycastHit hit;
-        float RayDistance = Range * 2;
-        Vector3 direction = transform.TransformDirection(Vector3.left) * RayDistance;
-        //Physics.Raycast(RayOrigin.position, RayDirection, out hit, RayDistance, Targets);
-        Gizmos.DrawRay(RayOrigin.position, direction);
+        if (isAttacking) return; 
+
+        Move();
+
+        if (attackTimer > 0)
+        {
+            attackTimer -= Time.deltaTime;
+        }
+
+        DetectAndAttackTargets();
+    }
+
+    private void Move()
+    {
+        transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+
+        if (animator != null)
+        {
+            animator.SetBool("IsWalking", true);
+        }
+    }
+
+    private void DetectAndAttackTargets()
+    {
+        Collider2D hitTarget = Physics2D.OverlapCircle(transform.position, attackRange, targetLayer);
+
+        if (hitTarget != null && attackTimer <= 0)
+        {
+            isAttacking = true;
+
+            if (animator != null)
+            {
+                animator.SetBool("IsWalking", false);
+                animator.SetTrigger("Attack");
+            }
+
+            Damageable target = hitTarget.GetComponent<Damageable>();
+            if (target != null)
+            {
+                target.TakeDamage(attackDamage); 
+            }
+
+            attackTimer = attackCooldown;
+
+            Invoke(nameof(EndAttack), 0.5f);
+        }
+    }
+
+    private void EndAttack()
+    {
+        isAttacking = false;
+
+        if (animator != null)
+        {
+            animator.SetBool("IsWalking", true);
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        if (animator != null)
+        {
+            animator.SetTrigger("TakeDamage");
+        }
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        if (animator != null)
+        {
+            animator.SetTrigger("Die");
+        }
+
+        Destroy(gameObject, 0.5f);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }

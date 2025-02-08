@@ -2,21 +2,42 @@ using UnityEngine;
 
 public class GnomeBase : CharacterBase
 {
-    //[SerializeField] protected static int Cost;
+    [Header("Gnome Settings")]
+    [SerializeField] private int cost = 25;
+
+    public Vector3Int Cell { get; set; }
+
+    protected override void Start()
+    {
+        base.Start();
+        animator = GetComponent<Animator>(); // Get Animator component
+    }
 
     protected override void FixedUpdate()
     {
-        RayDirection = Vector3.right;
         base.FixedUpdate();
+        if (animator != null)
+        {
+            animator.SetBool("isAttacking", true); // Example: Start attack animation
+        }
     }
-    public Vector3Int Cell { get; set; }
 
-    public void OnDrawGizmosSelected()
+    public override void TakeDamage(int damage) // Override the base method
     {
-        //RaycastHit hit;
-        float RayDistance = Range * 2;
-        Vector3 direction = transform.TransformDirection(Vector3.right) * RayDistance;
-        //Physics.Raycast(RayOrigin.position, RayDirection, out hit, RayDistance, Targets);
-        Gizmos.DrawRay(RayOrigin.position, direction);
+        base.TakeDamage(damage); // Call the base logic (reduce health)
+        if (animator != null)
+        {
+            animator.SetTrigger("isHurt"); // Play hurt animation
+        }
+    }
+
+    protected override void Death() // Optional: Override death logic if needed
+    {
+        if (animator != null)
+        {
+            animator.SetBool("isDead", true); // Trigger death animation
+        }
+
+        Destroy(gameObject, 1f); // Destroy with delay to allow animation to play
     }
 }

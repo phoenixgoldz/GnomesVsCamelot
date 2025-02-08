@@ -1,61 +1,100 @@
 using UnityEngine;
 
-public class CharacterBase : MonoBehaviour, Damageable
+public class CharacterBase : MonoBehaviour
 {
-    // -1 means no range, 10 means full map range
-    [SerializeField] protected int Range;
-    //[SerializeField] protected static float Damage;
-
-    [SerializeField] protected float Health;
+    [Header("Character Stats")]
+    [SerializeField] protected float health = 100f;
     protected float currentHealth;
 
-    //[SerializeField] protected static float PlacementDelay;
-    //protected float PlacementCooldown; // used to track the time before Placement Cooldown is zero
+    [Header("Attack Settings")]
+    [SerializeField] protected float attackRate = 1f; // Attack cooldown in seconds
+    protected float attackCooldown = 0f;
+    [SerializeField] protected int attackDamage = 10; // Damage per attack
+    [SerializeField] protected float range = 2f; // Attack range in world units
+    [SerializeField] protected GameObject attackPrefab; // Attack object (e.g., projectile)
 
-    // -1 means it won't attack
-    [SerializeField] protected float AttackRate;
-    protected float AttackCooldown; // used to track the time before Attack Rate is zero
+    [Header("Components")]
+    [SerializeField] protected Transform rayOrigin; // Where attacks originate
+    [SerializeField] protected Vector3 rayDirection = Vector3.right; // Default attack direction
+    [SerializeField] protected LayerMask targetLayer; // Layer to detect attackable objects
 
-    [SerializeField] protected Transform RayOrigin;
-    [SerializeField] protected LayerMask Targets;
-    [SerializeField] protected GameObject AttackObject;
+    [Header("Character Settings")]
     [SerializeField] protected Animator animator;
-    protected Vector3 RayDirection;
-
     protected virtual void Start()
     {
-        currentHealth = Health;
+        currentHealth = health; // Initialize health
     }
 
     protected virtual void FixedUpdate()
     {
-        //if (PlacementCooldown > 0) PlacementCooldown -= Time.fixedDeltaTime; // Cut for now because I'm not sure if this is where it will end up being
-        if (AttackRate != -1 && AttackCooldown > 0) AttackCooldown -= Time.fixedDeltaTime;
-        if (AttackCooldown <= 0 && AttackRate != -1)
+        // Handle attack cooldown
+        if (attackRate > 0 && attackCooldown > 0)
         {
-            // change the equation to match the grid size
-            float RayDistance = Range * 2;
-            if (Physics2D.Raycast(RayOrigin.position, RayDirection, RayDistance, Targets))
-            {
-                Attack();
-            }
+            attackCooldown -= Time.fixedDeltaTime;
+        }
+
+        // Perform attack if cooldown is ready
+        if (attackCooldown <= 0)
+        {
+            DetectAndAttack();
         }
     }
 
-    protected virtual void Attack()
+    // Detects enemies and attacks when in range
+    protected virtual void DetectAndAttack()
     {
-        Instantiate(AttackObject);
-        AttackCooldown = AttackRate;
+        float rayDistance = range * 2; // Convert range to world distance
+
+        // Perform a raycast to detect an enemy
+        RaycastHit2D hit = Physics2D.Raycast(rayOrigin.position, rayDirection, rayDistance, targetLayer);
+
+        if (hit.collider != null)
+        {
+            Attack(hit.collider.gameObject);
+        }
     }
 
-    public virtual void ApplyDamage(float damage)
+    // Handles attack logic
+    protected virtual void Attack(GameObject target)
+    {
+        if (animator != null)
+        {
+            animator.SetTrigger("Attack");
+        }
+
+        // If using projectiles
+        if (attackPrefab != null)
+        {
+            Instantiate(attackPrefab, rayOrigin.position, Quaternion.identity);
+        }
+
+        // Direct damage if melee
+        if (target.TryGetComponent(out Damageable enemy))
+        {
+            enemy.TakeDamage(attackDamage);
+        }
+
+        attackCooldown = attackRate; // Reset cooldown
+    }
+
+    // Handles taking damage
+    public virtual void TakeDamage(int damage) // Marked as virtual
     {
         currentHealth -= damage;
         if (currentHealth <= 0) Death();
     }
 
-    protected virtual void Death()
+    protected virtual void Death() // Also virtual if GnomeBase or others need to override it
     {
-
+        // Default death logic (can be empty or generalized)
+        Destroy(gameObject);
+    }
+    private void OnDrawGizmosSelected()
+    {
+        if (rayOrigin != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(rayOrigin.position, rayOrigin.position + (rayDirection * (range * 2)));
+        }
     }
 }

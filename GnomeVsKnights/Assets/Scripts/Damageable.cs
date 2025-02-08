@@ -1,6 +1,21 @@
 using UnityEngine;
 
-public interface Damageable
+public class Damageable : MonoBehaviour
 {
-    void ApplyDamage(float damage);
+    [SerializeField] private int health = 50;
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject); 
+    }
 }

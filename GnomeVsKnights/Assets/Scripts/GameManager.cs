@@ -1,7 +1,11 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
+using TMPro;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -12,22 +16,50 @@ public class GameManager : Singleton<GameManager>
     private bool touchBegan = false;
     private GameObject placementIndicator = null;
     public Dictionary<Vector3Int, GnomeBase> placedGnomes = new Dictionary<Vector3Int, GnomeBase>();
-    public List<GameObject> knightQueue = new List<GameObject>(); // Queue for knights
+    public List<GameObject> knightQueue = new List<GameObject>();
     private int placementType = 0;
-    public float knightSpawnInterval = 5f; // Time interval for knights to spawn
+    public float knightSpawnInterval = 2f; // Time interval between knight spawns
+    private int knightsToSpawn = 0; // Number of knights left to spawn in the current wave
+    private bool isWaveActive = false; // Is the wave currently active?
     private float knightSpawnTimer = 0f;
+
+    // UI Elements
+    public TMP_Text energyText;
+    public TMP_Text waveText;
+    public GameObject pauseMenu;
+    public GameObject winnerPanel;
+    public GameObject gameOverPanel;
+    public Button[] gnomeButtons;
+
+    private int playerEnergy = 100;
+    private int currentWave = 1;
+    private int maxWaves = 5;
+    private bool gameEnded = false;
 
     private void Start()
     {
         knightSpawnTimer = knightSpawnInterval;
+        UpdateEnergyUI();
+        UpdateWaveUI();
+        pauseMenu.SetActive(false);
+        winnerPanel.SetActive(false);
+        gameOverPanel.SetActive(false);
+
+        for (int i = 0; i < gnomeButtons.Length; i++)
+        {
+            int index = i;
+            gnomeButtons[i].onClick.AddListener(() => InitiatePlacement(index));
+        }
     }
 
     private void Update()
     {
+        if (gameEnded) return;
+
         int input = getInput(0);
         if (input == 1)
         {
-            InitiatePlacement(0);
+            InitiatePlacement(placementType);
         }
         else if (input == 2)
         {
@@ -38,17 +70,45 @@ public class GameManager : Singleton<GameManager>
             PlaceGnome();
         }
 
-        // Handle knight spawning logic
         knightSpawnTimer -= Time.deltaTime;
         if (knightSpawnTimer <= 0)
         {
             SpawnKnight();
-            knightSpawnTimer = knightSpawnInterval; // Reset timer
+            knightSpawnTimer = knightSpawnInterval;
+        }
+
+        // Check if the player wins
+        if (currentWave > maxWaves && knightQueue.Count == 0)
+        {
+            ShowWinnerScreen();
+        }
+        if (isWaveActive)
+        {
+            // Spawn knights during active waves
+            knightSpawnTimer -= Time.deltaTime;
+            if (knightSpawnTimer <= 0 && knightsToSpawn > 0)
+            {
+                SpawnKnight();
+                knightsToSpawn--;
+                knightSpawnTimer = knightSpawnInterval; // Reset the timer
+            }
+
+            // End the wave when all knights are spawned and defeated
+            if (knightsToSpawn <= 0 && knightQueue.Count == 0)
+            {
+                EndWave();
+            }
         }
     }
 
     public void InitiatePlacement(int type)
     {
+        if (playerEnergy < 25)
+        {
+            Debug.Log("Not enough energy to place a gnome!");
+            return;
+        }
+
         if (placementIndicator != null) Destroy(placementIndicator);
         placementIndicator = Instantiate(placementPrefabs[type]);
         placementType = type;
@@ -65,6 +125,12 @@ public class GameManager : Singleton<GameManager>
 
     private void PlaceGnome()
     {
+        if (fullGnomes.Length == 0)
+        {
+            Debug.LogError("The fullGnomes array is empty. Add gnome prefabs in the Inspector.");
+            return;
+        }
+
         if (placementIndicator != null)
         {
             Destroy(placementIndicator);
@@ -72,36 +138,124 @@ public class GameManager : Singleton<GameManager>
         }
 
         Vector3Int at = GetCell(GetWorld(getInputLocation()));
-        if (at.x >= 0 && at.x <= 8 && at.y >= 0 && at.y <= 4)
+        Debug.Log($"Clicked Position: {at}");
+
+        BoundsInt tilemapBounds = map.cellBounds;
+
+        if (tilemapBounds.Contains(at))
         {
             if (!placedGnomes.ContainsKey(at))
             {
+                if (placementType < 0 || placementType >= fullGnomes.Length)
+                {
+                    Debug.LogError($"Invalid placementType: {placementType}. Array size: {fullGnomes.Length}");
+                    return;
+                }
+
                 GameObject gnome = Instantiate(fullGnomes[placementType]);
-                gnome.transform.position = GetWorld(at) + map.cellSize * 0.5f;
+                gnome.transform.position = GetWorld(at) + new Vector3(map.cellSize.x * 0.5f, map.cellSize.y * 0.5f, 0);
                 GnomeBase gnomeData = gnome.GetComponent<GnomeBase>();
-                gnomeData.Cell = at; // Use the newly added property
+                gnomeData.Cell = at;
                 placedGnomes.Add(at, gnomeData);
+
+                Debug.Log($"Placed gnome of type {placementType} at {at}");
             }
             else
             {
-                Debug.Log("Not placed because occupied");
+                Debug.Log("Cannot place gnome: Spot is already occupied.");
             }
         }
         else
         {
-            Debug.Log($"Not placed because out of bounds ({at.x}, {at.y})");
+            Debug.Log($"Cannot place gnome: Position {at} is outside the tilemap bounds {tilemapBounds}.");
         }
     }
 
     private void SpawnKnight()
     {
-        if (knightQueue.Count > 0)
+        GameObject knightPrefab = knightQueue[UnityEngine.Random.Range(0, knightQueue.Count)];
+        GameObject knight = Instantiate(knightPrefab);
+
+        // Randomize spawn row
+        int randomRow = UnityEngine.Random.Range(0, 5); 
+        Vector3Int spawnCell = new Vector3Int(9, randomRow, 0);
+        knight.transform.position = GetWorld(spawnCell) + map.cellSize * 0.5f;
+    }
+
+    public void KnightReachedEnd()
+    {
+        ShowGameOverScreen();
+    }
+
+    private void ShowGameOverScreen()
+    {
+        gameEnded = true;
+        gameOverPanel.SetActive(true);
+        Time.timeScale = 0; // Pause game
+    }
+
+    private void ShowWinnerScreen()
+    {
+        gameEnded = true;
+        winnerPanel.SetActive(true);
+        Time.timeScale = 0;
+    }
+    public void NextWave()
+    {
+        currentWave++;
+        UpdateWaveUI();
+
+        // Increase knight count for the wave
+        int knightCount = 5 + (currentWave * 2);
+        for (int i = 0; i < knightCount; i++)
         {
-            GameObject knightPrefab = knightQueue[0];
-            knightQueue.RemoveAt(0);
-            GameObject knight = Instantiate(knightPrefab);
-            knight.transform.position = GetWorld(new Vector3Int(9, 0, UnityEngine.Random.Range(0, 4))) + map.cellSize * 0.5f;
+            GameObject knightPrefab = knightQueue[UnityEngine.Random.Range(0, knightQueue.Count)];
+            knightQueue.Add(knightPrefab); // Add knights to queue
         }
+
+        winnerPanel.SetActive(false);
+        Time.timeScale = 1;
+    }
+    public void StartWave()
+    {
+        currentWave++;
+        UpdateWaveUI();
+        StartCoroutine(DelayedWaveStart());
+
+        knightsToSpawn = 5 + (currentWave * 2); 
+        isWaveActive = true;
+
+        
+        winnerPanel.SetActive(false);
+
+        // Resume game
+        Time.timeScale = 1;
+    }
+    private IEnumerator DelayedWaveStart()
+    {
+        yield return new WaitForSeconds(3f); // Wait for 3 seconds before starting the wave
+
+        
+        currentWave++;
+        UpdateWaveUI();
+
+        knightsToSpawn = 5 + (currentWave * 2);
+        isWaveActive = true;
+
+        // Hide the Winner Panel
+        winnerPanel.SetActive(false);
+
+        // Resume game
+        Time.timeScale = 1;
+    }
+    private void EndWave()
+    {
+        isWaveActive = false;
+
+        winnerPanel.SetActive(true);
+
+        // Pause the game
+        Time.timeScale = 0;
     }
 
     private int getInput(int button)
@@ -161,4 +315,32 @@ public class GameManager : Singleton<GameManager>
             placedGnomes.Remove(at);
         }
     }
+
+    public void UpdateEnergyUI()
+    {
+        energyText.text = playerEnergy.ToString();
+    }
+
+    public void UpdateWaveUI()
+    {
+        waveText.text = $"Wave {currentWave}/{maxWaves}";
+    }
+
+    public void TogglePauseMenu()
+    {
+        pauseMenu.SetActive(!pauseMenu.activeSelf);
+        Time.timeScale = pauseMenu.activeSelf ? 0 : 1;
+    }
+    public void RestartGame()
+    {
+        Time.timeScale = 1; // Ensure time is running
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ReturnToMainMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MainMenuScene");
+    }
 }
+
