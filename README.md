@@ -4,7 +4,7 @@
 
 🛠 **Platform:** **Android**  
 
-![Gnomes vs Camelot](GnomeVsKnights/Assets/Images/GameBanner.png)
+![Gnomes vs Camelot](GnomeVsKnights/Assets/Images/GameBanners/GameBanner.png)
 
 ---
 
