@@ -187,11 +187,6 @@ public class GameManager : Singleton<GameManager>
         knight.transform.position = GetWorld(spawnCell) + map.cellSize * 0.5f;
     }
 
-    public void KnightReachedEnd()
-    {
-        ShowGameOverScreen();
-    }
-
     private void ShowGameOverScreen()
     {
         gameEnded = true;

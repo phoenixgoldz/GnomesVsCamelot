@@ -1983,7 +1983,7 @@ Animator:
   m_GameObject: {fileID: 593576957}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6fb2c5313caee4b46902e9306e523029, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0cc3f3dc05ad6544b8ab1dae4cffda4a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2083,7 +2083,7 @@ Transform:
   m_GameObject: {fileID: 593576957}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.46, y: 3.33, z: -0.9}
+  m_LocalPosition: {x: -11.6, y: 3.33, z: -0.9}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2820,7 +2820,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.45779222, y: 0.24675328, z: 0}
   m_MaxChunkCount: 16
@@ -3444,7 +3444,7 @@ Transform:
   m_GameObject: {fileID: 785019307}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.46, y: 4.95, z: -0.9}
+  m_LocalPosition: {x: -11.6, y: 4.95, z: -0.9}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4494,7 +4494,7 @@ Animator:
   m_GameObject: {fileID: 1297734238}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6fb2c5313caee4b46902e9306e523029, type: 2}
+  m_Controller: {fileID: 9100000, guid: 74b022ab57c0dc944b452fe3e3d20955, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4594,7 +4594,7 @@ Transform:
   m_GameObject: {fileID: 1297734238}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.55, y: 1.71, z: -0.9}
+  m_LocalPosition: {x: -11.690001, y: 1.71, z: -0.9}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -6219,8 +6219,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   attackDamage: 10
-  attackRange: 1
   attackCooldown: 1
+  attackRange: 1
   targetLayer:
     serializedVersion: 2
     m_Bits: 0
