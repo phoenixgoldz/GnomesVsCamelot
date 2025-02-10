@@ -11,33 +11,62 @@ public class GnomeBase : CharacterBase
     {
         base.Start();
         animator = GetComponent<Animator>(); // Get Animator component
+        SetIdleState();
     }
 
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-        if (animator != null)
+        DetectEnemies();
+    }
+
+    private void DetectEnemies()
+    {
+        Collider2D enemy = Physics2D.OverlapCircle(transform.position, range, targetLayer);
+
+        if (enemy != null)
         {
-            animator.SetBool("isAttacking", true); // Example: Start attack animation
+            SetAttackState();
+        }
+        else
+        {
+            SetIdleState();
         }
     }
 
-    public override void TakeDamage(int damage) // Override the base method
+    private void SetIdleState()
     {
-        base.TakeDamage(damage); // Call the base logic (reduce health)
         if (animator != null)
         {
-            animator.SetTrigger("isHurt"); // Play hurt animation
+            animator.SetBool("IsAttacking", false);
+            animator.SetBool("IsIdle", true);
         }
     }
 
-    protected override void Death() // Optional: Override death logic if needed
+    private void SetAttackState()
     {
         if (animator != null)
         {
-            animator.SetBool("isDead", true); // Trigger death animation
+            animator.SetBool("IsIdle", false);
+            animator.SetBool("IsAttacking", true);
         }
+    }
 
-        Destroy(gameObject, 1f); // Destroy with delay to allow animation to play
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        if (animator != null)
+        {
+            animator.SetTrigger("IsHurt"); // Play hurt animation
+        }
+    }
+
+    protected override void Death()
+    {
+        if (animator != null)
+        {
+            animator.SetBool("IsDead", true);
+        }
+        Destroy(gameObject, 1f); // Allow animation to play before destroying
     }
 }

@@ -6,30 +6,36 @@ public class KnightBase : MonoBehaviour
     [SerializeField] private float moveSpeed = 1f; 
 
     [Header("Attack")]
-    [SerializeField] private int attackDamage = 10; 
-    [SerializeField] private float attackRange = 0.5f; 
-    [SerializeField] private float attackCooldown = 1f; 
-    [SerializeField] private LayerMask targetLayer; 
+    [SerializeField] private int attackDamage = 10;
+    [SerializeField] private float attackCooldown = 1f;
+    [SerializeField] private float attackRange = 0.5f;
+    [SerializeField] private LayerMask targetLayer;
 
     [Header("Health")]
-    [SerializeField] private int maxHealth = 50; 
+    [SerializeField] private int maxHealth = 50;
     private int currentHealth;
 
-    private float attackTimer = 0f; 
-    private bool isAttacking = false; 
-    private Animator animator; 
+    private float attackTimer = 0f;
+    private bool isAttacking = false;
+    private Animator animator;
 
     private void Start()
     {
-        currentHealth = maxHealth; 
-        animator = GetComponent<Animator>(); 
+        currentHealth = maxHealth;
+        animator = GetComponent<Animator>();
+
+        if (animator != null)
+        {
+            animator.SetBool("IsWalking", true); 
+        }
     }
 
     private void Update()
     {
-        if (isAttacking) return; 
-
-        Move();
+        if (!isAttacking)
+        {
+            Move();
+        }
 
         if (attackTimer > 0)
         {
@@ -41,7 +47,15 @@ public class KnightBase : MonoBehaviour
 
     private void Move()
     {
-        transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+        transform.position += Vector3.left * moveSpeed * Time.deltaTime; // Move left
+
+        // Check if Knight reaches losing tilemap position (0,1-5,0)
+        Vector3Int currentCell = GameManager.Instance.map.WorldToCell(transform.position);
+        if (currentCell.x == 0 && currentCell.y >= 1 && currentCell.y <= 5)
+        {
+            GameManager.Instance.KnightReachedEnd(); // Triggers Game Over
+            Destroy(gameObject);
+        }
 
         if (animator != null)
         {
@@ -60,18 +74,17 @@ public class KnightBase : MonoBehaviour
             if (animator != null)
             {
                 animator.SetBool("IsWalking", false);
-                animator.SetTrigger("Attack");
+                animator.SetBool("IsAttacking", true);
             }
 
             Damageable target = hitTarget.GetComponent<Damageable>();
             if (target != null)
             {
-                target.TakeDamage(attackDamage); 
+                target.TakeDamage(attackDamage);
             }
 
             attackTimer = attackCooldown;
-
-            Invoke(nameof(EndAttack), 0.5f);
+            Invoke(nameof(EndAttack), 0.5f); // Attack animation duration
         }
     }
 
@@ -82,17 +95,13 @@ public class KnightBase : MonoBehaviour
         if (animator != null)
         {
             animator.SetBool("IsWalking", true);
+            animator.SetBool("IsAttacking", false);
         }
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-
-        if (animator != null)
-        {
-            animator.SetTrigger("TakeDamage");
-        }
 
         if (currentHealth <= 0)
         {
@@ -104,10 +113,10 @@ public class KnightBase : MonoBehaviour
     {
         if (animator != null)
         {
-            animator.SetTrigger("Die");
+            animator.SetBool("IsDead", true);
         }
 
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject, 0.5f); // Allow death animation to play before removal
     }
 
     private void OnDrawGizmosSelected()

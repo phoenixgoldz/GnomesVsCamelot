@@ -18,12 +18,11 @@ public class GameManager : Singleton<GameManager>
     public Dictionary<Vector3Int, GnomeBase> placedGnomes = new Dictionary<Vector3Int, GnomeBase>();
     public List<GameObject> knightQueue = new List<GameObject>();
     private int placementType = 0;
-    public float knightSpawnInterval = 2f; // Time interval between knight spawns
+    public float knightSpawnInterval = 1.5f; 
     private int knightsToSpawn = 0; // Number of knights left to spawn in the current wave
-    private bool isWaveActive = false; // Is the wave currently active?
+    private bool isWaveActive = false; 
     private float knightSpawnTimer = 0f;
 
-    // UI Elements
     public TMP_Text energyText;
     public TMP_Text waveText;
     public GameObject pauseMenu;
@@ -99,6 +98,12 @@ public class GameManager : Singleton<GameManager>
                 EndWave();
             }
         }
+    }
+
+    public void KnightReachedEnd()
+    {
+        Debug.Log("A knight reached the base! Game Over.");
+        ShowGameOverScreen();
     }
 
     public void InitiatePlacement(int type)
@@ -233,7 +238,7 @@ public class GameManager : Singleton<GameManager>
     }
     private IEnumerator DelayedWaveStart()
     {
-        yield return new WaitForSeconds(3f); // Wait for 3 seconds before starting the wave
+        yield return new WaitForSeconds(2f);
 
         
         currentWave++;
@@ -242,10 +247,8 @@ public class GameManager : Singleton<GameManager>
         knightsToSpawn = 5 + (currentWave * 2);
         isWaveActive = true;
 
-        // Hide the Winner Panel
         winnerPanel.SetActive(false);
 
-        // Resume game
         Time.timeScale = 1;
     }
     private void EndWave()
