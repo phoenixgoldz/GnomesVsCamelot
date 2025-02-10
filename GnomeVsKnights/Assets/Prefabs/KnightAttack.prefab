@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8363253990909545680}
   - component: {fileID: 2448413380314749286}
   - component: {fileID: 3559268122122087183}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: KnightAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,9 +74,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1152560609
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -100,11 +100,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 095089607a51670438dd289ce0bf0069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Targets:
+  targets:
     serializedVersion: 2
-    m_Bits: 64
-  HitRadius: 10
-  Damage: 10
-  AttackLifespan: 10
-  HitCount: 1
+    m_Bits: 0
+  hitRadius: 0.5
+  damage: 10
+  attackLifespan: 2
+  maxHits: 1
   ProjectileSpeed: -10

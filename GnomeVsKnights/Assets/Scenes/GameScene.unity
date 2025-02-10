@@ -1966,13 +1966,13 @@ GameObject:
   - component: {fileID: 593576960}
   - component: {fileID: 593576959}
   - component: {fileID: 593576958}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: 'AxeGnome '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &593576958
 Animator:
   serializedVersion: 7
@@ -2083,7 +2083,7 @@ Transform:
   m_GameObject: {fileID: 593576957}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -9.46, y: 3.33, z: -0.9}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3327,13 +3327,13 @@ GameObject:
   - component: {fileID: 785019310}
   - component: {fileID: 785019309}
   - component: {fileID: 785019308}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: SwordGnome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &785019308
 Animator:
   serializedVersion: 7
@@ -3444,7 +3444,7 @@ Transform:
   m_GameObject: {fileID: 785019307}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -9.46, y: 4.95, z: -0.9}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4477,13 +4477,13 @@ GameObject:
   - component: {fileID: 1297734241}
   - component: {fileID: 1297734240}
   - component: {fileID: 1297734239}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: HammerGnome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1297734239
 Animator:
   serializedVersion: 7
@@ -4574,7 +4574,7 @@ SpriteRenderer:
   m_SortingLayerID: -1152560609
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 536893023, guid: 3275b9669f219114ab839ee8c808aa9c, type: 3}
+  m_Sprite: {fileID: -457119648, guid: 5f888f00d0e1eda4ab71fa9dab5e3d73, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4594,7 +4594,7 @@ Transform:
   m_GameObject: {fileID: 1297734238}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -9.55, y: 1.71, z: -0.9}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -6176,13 +6176,13 @@ GameObject:
   - component: {fileID: 1848762534}
   - component: {fileID: 1848762533}
   - component: {fileID: 1848762536}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: 1stEnemyLance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1848762533
 Animator:
   serializedVersion: 7
@@ -6234,7 +6234,7 @@ Transform:
   m_GameObject: {fileID: 1848762532}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 11.67, y: 0, z: 0}
+  m_LocalPosition: {x: 11.28, y: 0, z: -0.9}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []

@@ -11,7 +11,6 @@ public class LocalGameManager : MonoBehaviour
 
     private void Start()
     {
-        // Initialize references for the GameManager
         GameManager.Instance.cam = cam;
         GameManager.Instance.map = tilemap;
         GameManager.Instance.placementPrefabs = placementPrefabs;
@@ -32,7 +31,14 @@ public class LocalGameManager : MonoBehaviour
         if (selectedGnomeIndex >= 0 && selectedGnomeIndex < placementPrefabs.Length)
         {
             placementIndicator = Instantiate(placementPrefabs[selectedGnomeIndex]);
-            placementIndicator.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f); 
+
+            // Set transparency for placement preview
+            SpriteRenderer sr = placementIndicator.GetComponent<SpriteRenderer>();
+            if (sr != null)
+            {
+                sr.color = new Color(1f, 1f, 1f, 0.5f);
+                sr.sortingLayerName = "Foreground"; 
+            }
         }
     }
 
@@ -41,13 +47,15 @@ public class LocalGameManager : MonoBehaviour
         if (selectedGnomeIndex == -1 || placementIndicator == null)
             return;
 
-        // Update placement indicator position
         Vector3 mouseWorldPosition = cam.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPosition.z = 0;
         Vector3Int cellPosition = tilemap.WorldToCell(mouseWorldPosition);
         placementIndicator.transform.position = tilemap.CellToWorld(cellPosition) + tilemap.cellSize * 0.5f;
 
-        // Place gnome on left-click
+        
+        Debug.Log($"Placement Indicator Position: {placementIndicator.transform.position}, Cell: {cellPosition}");
+
+        
         if (Input.GetMouseButtonDown(0))
         {
             if (CanPlaceGnome(cellPosition))
@@ -63,14 +71,33 @@ public class LocalGameManager : MonoBehaviour
 
     private bool CanPlaceGnome(Vector3Int cellPosition)
     {
-        
-        return GameManager.Instance.placedGnomes.ContainsKey(cellPosition) == false;
+        return !GameManager.Instance.placedGnomes.ContainsKey(cellPosition);
     }
 
     private void PlaceGnome(Vector3Int cellPosition)
     {
+        if (selectedGnomeIndex < 0 || selectedGnomeIndex >= placementPrefabs.Length)
+        {
+            Debug.LogError("Invalid gnome selection!");
+            return;
+        }
+
         GameObject gnome = Instantiate(placementPrefabs[selectedGnomeIndex]);
         gnome.transform.position = tilemap.CellToWorld(cellPosition) + tilemap.cellSize * 0.5f;
+
+        // Debugging
+        Debug.Log($"Placing gnome at: {gnome.transform.position}, Cell: {cellPosition}");
+
+        SpriteRenderer sr = gnome.GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            sr.color = new Color(1f, 1f, 1f, 1f); 
+            sr.sortingLayerName = "Foreground";
+        }
+        else
+        {
+            Debug.LogWarning("SpriteRenderer missing from Gnome prefab!");
+        }
 
         GameManager.Instance.placedGnomes[cellPosition] = gnome.GetComponent<GnomeBase>();
 
