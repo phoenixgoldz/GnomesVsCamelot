@@ -151,15 +151,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33d592608c0518a4dbe000fa20647bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 5
-  Health: 30
-  AttackRate: 2
-  RayOrigin: {fileID: 14991490}
-  Targets:
+  health: 100
+  attackRate: 1
+  attackDamage: 10
+  range: 2
+  attackPrefab: {fileID: 8236419659464331663, guid: efa1393b610803643b309a1a82bc1cfb, type: 3}
+  rayOrigin: {fileID: 14991490}
+  rayDirection: {x: 1, y: 0, z: 0}
+  targetLayer:
     serializedVersion: 2
     m_Bits: 128
-  AttackObject: {fileID: 8236419659464331663, guid: efa1393b610803643b309a1a82bc1cfb, type: 3}
   animator: {fileID: 14991491}
+  cost: 25
 --- !u!212 &14991489
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -203,7 +206,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -330,16 +333,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 954d46d749e48274f817f3b75298b496, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 2
-  Health: 20
-  AttackRate: 3
-  RayOrigin: {fileID: 72573384}
-  Targets:
+  health: 20
+  attackRate: 1
+  attackDamage: 10
+  range: 0.5
+  attackPrefab: {fileID: 8236419659464331663, guid: 6e831593f51041347bc4d6cd47053a93, type: 3}
+  rayOrigin: {fileID: 72573384}
+  rayDirection: {x: -1, y: 0, z: 0}
+  targetLayer:
     serializedVersion: 2
     m_Bits: 64
-  AttackObject: {fileID: 8236419659464331663, guid: 6e831593f51041347bc4d6cd47053a93, type: 3}
   animator: {fileID: 72573381}
-  MoveSpeed: 2
+  moveSpeed: 1
+  attackAnimDuration: 0.5
 --- !u!95 &72573381
 Animator:
   serializedVersion: 7
@@ -451,7 +457,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

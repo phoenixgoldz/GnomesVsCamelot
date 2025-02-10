@@ -2012,11 +2012,11 @@ MonoBehaviour:
   attackDamage: 10
   range: 8
   attackPrefab: {fileID: 593576957}
-  rayOrigin: {fileID: 623138717}
+  rayOrigin: {fileID: 593576961}
   rayDirection: {x: 1, y: 0, z: 0}
   targetLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   animator: {fileID: 593576958}
   cost: 25
 --- !u!212 &593576960
@@ -2128,6 +2128,9 @@ MonoBehaviour:
   cam: {fileID: 672265720}
   knightQueue:
   - {fileID: 1848762532}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   knightSpawnInterval: 5
   energyText: {fileID: 1171949225}
   waveText: {fileID: 1558178937}
@@ -3327,7 +3330,7 @@ GameObject:
   - component: {fileID: 785019310}
   - component: {fileID: 785019309}
   - component: {fileID: 785019308}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: SwordGnome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3373,11 +3376,11 @@ MonoBehaviour:
   attackDamage: 10
   range: 8
   attackPrefab: {fileID: 785019307}
-  rayOrigin: {fileID: 623138717}
+  rayOrigin: {fileID: 785019311}
   rayDirection: {x: 1, y: 0, z: 0}
   targetLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   animator: {fileID: 785019308}
   cost: 25
 --- !u!212 &785019310
@@ -4522,12 +4525,12 @@ MonoBehaviour:
   attackRate: 1
   attackDamage: 10
   range: 8
-  attackPrefab: {fileID: 1297734238}
-  rayOrigin: {fileID: 623138717}
+  attackPrefab: {fileID: 8236419659464331663, guid: efa1393b610803643b309a1a82bc1cfb, type: 3}
+  rayOrigin: {fileID: 1297734242}
   rayDirection: {x: 1, y: 0, z: 0}
   targetLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   animator: {fileID: 1297734239}
   cost: 25
 --- !u!212 &1297734241
@@ -6176,7 +6179,7 @@ GameObject:
   - component: {fileID: 1848762534}
   - component: {fileID: 1848762533}
   - component: {fileID: 1848762536}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: 1stEnemyLance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6217,14 +6220,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 954d46d749e48274f817f3b75298b496, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  health: 100
+  attackRate: 1
   attackDamage: 10
-  attackCooldown: 1
-  attackRange: 1
+  range: 1
+  attackPrefab: {fileID: 0}
+  rayOrigin: {fileID: 1848762535}
+  rayDirection: {x: -1, y: 0, z: 0}
   targetLayer:
     serializedVersion: 2
-    m_Bits: 0
-  maxHealth: 60
+    m_Bits: 64
+  animator: {fileID: 1848762533}
+  moveSpeed: 1
+  attackAnimDuration: 0.5
 --- !u!4 &1848762535
 Transform:
   m_ObjectHideFlags: 0
@@ -6234,7 +6242,7 @@ Transform:
   m_GameObject: {fileID: 1848762532}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 11.28, y: 0, z: -0.9}
+  m_LocalPosition: {x: 12.09, y: 0, z: -0.9}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
