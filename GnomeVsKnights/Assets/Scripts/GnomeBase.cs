@@ -14,9 +14,9 @@ public class GnomeBase : CharacterBase
         SetIdleState();
     }
 
-    protected override void FixedUpdate()
+    protected override void Update()
     {
-        base.FixedUpdate();
+        base.Update();
         DetectEnemies();
     }
 

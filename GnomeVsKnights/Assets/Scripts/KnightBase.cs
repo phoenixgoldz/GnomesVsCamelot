@@ -1,27 +1,28 @@
 using UnityEngine;
 
-public class KnightBase : MonoBehaviour
+public class KnightBase : CharacterBase
 {
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 1f; 
 
     [Header("Attack")]
-    [SerializeField] private int attackDamage = 10;
-    [SerializeField] private float attackCooldown = 1f;
-    [SerializeField] private float attackRange = 0.5f;
-    [SerializeField] private LayerMask targetLayer;
+    //[SerializeField] private int attackDamage = 10;
+    //[SerializeField] private float attackCooldown = 1f;
+    //[SerializeField] private float attackRange = 0.5f;
+    //[SerializeField] private LayerMask targetLayer;
 
     [Header("Health")]
-    [SerializeField] private int maxHealth = 50;
-    private int currentHealth;
+    //[SerializeField] private int maxHealth = 50;
+    //private int currentHealth;
 
     private float attackTimer = 0f;
+    [SerializeField] private float attackAnimDuration = 0.5f;
     private bool isAttacking = false;
-    private Animator animator;
+    //private Animator animator;
 
-    private void Start()
+    protected override void Start()
     {
-        currentHealth = maxHealth;
+        currentHealth = health;
         animator = GetComponent<Animator>();
 
         if (animator != null)
@@ -30,19 +31,21 @@ public class KnightBase : MonoBehaviour
         }
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+
         if (!isAttacking)
         {
             Move();
         }
 
-        if (attackTimer > 0)
-        {
-            attackTimer -= Time.deltaTime;
-        }
+        //if (attackTimer > 0)
+        //{
+        //    attackTimer -= Time.deltaTime;
+        //}
 
-        DetectAndAttackTargets();
+        //DetectAndAttackTargets();
     }
 
     private void Move()
@@ -63,30 +66,40 @@ public class KnightBase : MonoBehaviour
         }
     }
 
-    private void DetectAndAttackTargets()
+    protected override void Attack(GameObject target)
     {
-        Collider2D hitTarget = Physics2D.OverlapCircle(transform.position, attackRange, targetLayer);
-
-        if (hitTarget != null && attackTimer <= 0)
+        if (animator != null)
         {
-            isAttacking = true;
-
-            if (animator != null)
-            {
-                animator.SetBool("isWalking", false);
-                animator.SetBool("isAttacking", true);
-            }
-
-            Damageable target = hitTarget.GetComponent<Damageable>();
-            if (target != null)
-            {
-                target.TakeDamage(attackDamage);
-            }
-
-            attackTimer = attackCooldown;
-            Invoke(nameof(EndAttack), 0.5f); // Attack animation duration
+            animator.SetBool("isWalking", false);
         }
+        base.Attack(target);
+        Invoke(nameof(EndAttack), attackAnimDuration); // Attack animation duration
     }
+
+    //private void DetectAndAttackTargets()
+    //{
+    //    Collider2D hitTarget = Physics2D.OverlapCircle(transform.position, range, targetLayer);
+
+    //    if (hitTarget != null && attackTimer <= 0)
+    //    {
+    //        isAttacking = true;
+
+    //        if (animator != null)
+    //        {
+    //            animator.SetBool("IsWalking", false);
+    //            animator.SetBool("IsAttacking", true);
+    //        }
+
+    //        Damageable target = hitTarget.GetComponent<Damageable>();
+    //        if (target != null)
+    //        {
+    //            target.TakeDamage(attackDamage);
+    //        }
+
+    //        attackTimer = attackCooldown;
+    //        Invoke(nameof(EndAttack), attackAnimDuration); // Attack animation duration
+    //    }
+    //}
 
     private void EndAttack()
     {
@@ -99,17 +112,17 @@ public class KnightBase : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
+    //public void TakeDamage(int damage)
+    //{
+    //    currentHealth -= damage;
 
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-    }
+    //    if (currentHealth <= 0)
+    //    {
+    //        Die();
+    //    }
+    //}
 
-    private void Die()
+    protected override void Death()
     {
         if (animator != null)
         {
@@ -119,9 +132,9 @@ public class KnightBase : MonoBehaviour
         Destroy(gameObject, 0.5f); // Allow death animation to play before removal
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-    }
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawWireSphere(transform.position, range);
+    //}
 }

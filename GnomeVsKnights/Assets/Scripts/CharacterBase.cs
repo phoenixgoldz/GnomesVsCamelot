@@ -29,12 +29,12 @@ public class CharacterBase : MonoBehaviour
         }
     }
 
-    protected virtual void FixedUpdate()
+    protected virtual void Update()
     {
         // Handle attack cooldown
         if (attackRate > 0 && attackCooldown > 0)
         {
-            attackCooldown -= Time.fixedDeltaTime;
+            attackCooldown -= Time.deltaTime;
         }
 
         // Perform attack if cooldown is ready
@@ -73,7 +73,7 @@ public class CharacterBase : MonoBehaviour
         }
 
         // Direct damage if melee
-        if (target.TryGetComponent(out Damageable enemy))
+        else if (target.TryGetComponent(out Damageable enemy))
         {
             enemy.TakeDamage(attackDamage);
         }
@@ -93,6 +93,7 @@ public class CharacterBase : MonoBehaviour
         // Default death logic (can be empty or generalized)
         Destroy(gameObject);
     }
+
     private void OnDrawGizmosSelected()
     {
         if (rayOrigin != null)
