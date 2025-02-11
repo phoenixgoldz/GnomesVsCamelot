@@ -339,4 +339,3 @@ public class GameManager : Singleton<GameManager>
         SceneManager.LoadScene("MainMenuScene");
     }
 }
-
