@@ -20,8 +20,11 @@ public class InGameOptions : MonoBehaviour
     [SerializeField] private Image savingImage;
     [SerializeField] private RectTransform savingImageTransform;
 
+<<<<<<< Updated upstream
     private bool isSaving = false;
 
+=======
+>>>>>>> Stashed changes
     private void Start()
     {
         LoadSettings();
@@ -44,7 +47,11 @@ public class InGameOptions : MonoBehaviour
         musicSlider.value = musicVolume;
         sfxSlider.value = sfxVolume;
 
+<<<<<<< Updated upstream
         // Apply settings when loading
+=======
+        // Apply settings on load
+>>>>>>> Stashed changes
         SetMusicVolume(musicVolume);
         SetSFXVolume(sfxVolume);
     }
@@ -63,10 +70,13 @@ public class InGameOptions : MonoBehaviour
 
     public void ApplySettings()
     {
+<<<<<<< Updated upstream
         if (isSaving) return; // Prevent multiple saves overlapping
 
         isSaving = true;
         
+=======
+>>>>>>> Stashed changes
         // Show saving UI immediately
         if (savingImage != null) savingImage.gameObject.SetActive(true);
         if (saveMessage != null)
@@ -75,9 +85,12 @@ public class InGameOptions : MonoBehaviour
             saveMessage.text = "Saving...";
         }
 
+<<<<<<< Updated upstream
         // Start rotating animation
         StartCoroutine(RotateSavingIcon());
 
+=======
+>>>>>>> Stashed changes
         // Save settings permanently
         PlayerPrefs.SetFloat("MusicVolume", musicSlider.value);
         PlayerPrefs.SetFloat("SFXVolume", sfxSlider.value);
@@ -91,6 +104,7 @@ public class InGameOptions : MonoBehaviour
 
     private IEnumerator HideSaveMessage()
     {
+<<<<<<< Updated upstream
         yield return new WaitForSeconds(2.5f); // Wait for saving to be "complete"
 
         // Hide UI
@@ -109,6 +123,20 @@ public class InGameOptions : MonoBehaviour
 
             yield return null;
         }
+=======
+        float elapsedTime = 0f;
+        while (elapsedTime < 2.5f)
+        {
+            if (savingImageTransform != null)
+                savingImageTransform.Rotate(0f, 0f, 100f * Time.deltaTime);
+            
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        saveMessage?.gameObject.SetActive(false);
+        savingImage?.gameObject.SetActive(false);
+>>>>>>> Stashed changes
     }
 
     public void CloseInGameOptions()

@@ -3956,6 +3956,9 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 917953850}
   m_CullTransparentMesh: 1
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!1 &920643071
 GameObject:
@@ -5123,7 +5126,10 @@ Transform:
   m_Father: {fileID: 1780151177}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 --- !u!1 &1285287964
 GameObject:
   m_ObjectHideFlags: 0
@@ -6895,9 +6901,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: 
+=======
+      - m_Target: {fileID: 601081926}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ToggleFastForward
+>>>>>>> Stashed changes
 =======
       - m_Target: {fileID: 601081926}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
