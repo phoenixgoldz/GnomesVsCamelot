@@ -11,12 +11,13 @@ public class GameManager : Singleton<GameManager>
 {
     public GameObject[] placementPrefabs;
     public GameObject[] fullGnomes;
+    public RectTransform[] gnomeUILocations;
     public Tilemap map;
     public Camera cam;
     private bool touchBegan = false;
     private GameObject placementIndicator = null;
     public Dictionary<Vector3Int, GnomeBase> placedGnomes = new Dictionary<Vector3Int, GnomeBase>();
-    public List<GameObject> knightQueue = new List<GameObject>();
+    public List<GameObject> knightQueue;
     private int placementType = 0;
     public float knightSpawnInterval = 1.5f; 
     private int knightsToSpawn = 0; // Number of knights left to spawn in the current wave
@@ -28,7 +29,6 @@ public class GameManager : Singleton<GameManager>
     public GameObject pauseMenu;
     public GameObject winnerPanel;
     public GameObject gameOverPanel;
-    public Button[] gnomeButtons;
 
     private int playerEnergy = 100;
     private int currentWave = 1;
@@ -43,12 +43,6 @@ public class GameManager : Singleton<GameManager>
         pauseMenu.SetActive(false);
         winnerPanel.SetActive(false);
         gameOverPanel.SetActive(false);
-
-        for (int i = 0; i < gnomeButtons.Length; i++)
-        {
-            int index = i;
-            gnomeButtons[i].onClick.AddListener(() => InitiatePlacement(index));
-        }
     }
 
     private void Update()
@@ -58,7 +52,16 @@ public class GameManager : Singleton<GameManager>
         int input = getInput(0);
         if (input == 1)
         {
-            InitiatePlacement(placementType);
+            placementType = -1;
+            for(int i = 0; i < gnomeUILocations.Length; i++)
+            {
+                if (RectTransformUtility.RectangleContainsScreenPoint(gnomeUILocations[i], getInputLocation()))
+                {
+                    placementType = i;
+                    break;
+                }
+            }
+            InitiatePlacement();
         }
         else if (input == 2)
         {
@@ -106,17 +109,18 @@ public class GameManager : Singleton<GameManager>
         ShowGameOverScreen();
     }
 
-    public void InitiatePlacement(int type)
+    public void InitiatePlacement()
     {
-        if (playerEnergy < 25)
+        if (placementType != -1)
         {
-            Debug.Log("Not enough energy to place a gnome!");
-            return;
-        }
+            if (playerEnergy < 25)
+            {
+                Debug.Log("Not enough energy to place a gnome!");
+                return;
+            }
 
-        if (placementIndicator != null) Destroy(placementIndicator);
-        placementIndicator = Instantiate(placementPrefabs[type]);
-        placementType = type;
+            placementIndicator = Instantiate(placementPrefabs[placementType]);
+        }
     }
 
     private void UpdatePlacementIndicator()
@@ -130,26 +134,22 @@ public class GameManager : Singleton<GameManager>
 
     private void PlaceGnome()
     {
-        if (fullGnomes.Length == 0)
+        if (placementType != -1)
         {
-            Debug.LogError("The fullGnomes array is empty. Add gnome prefabs in the Inspector.");
-            return;
-        }
+            if (fullGnomes.Length == 0)
+            {
+                Debug.LogError("The fullGnomes array is empty. Add gnome prefabs in the Inspector.");
+                return;
+            }
 
-        if (placementIndicator != null)
-        {
-            Destroy(placementIndicator);
-            placementIndicator = null;
-        }
+            Vector3Int at = GetCell(GetWorld(getInputLocation()));
 
-        Vector3Int at = GetCell(GetWorld(getInputLocation()));
-        Debug.Log($"Clicked Position: {at}");
-
-        BoundsInt tilemapBounds = map.cellBounds;
-
-        if (tilemapBounds.Contains(at))
-        {
-            if (!placedGnomes.ContainsKey(at))
+            //Use hardcoded values instead of cell bounds because if someone accidentally places a cell far away it would be a pain to identify the cause and location
+            if(at.x < 0 || at.x > 8 || at.y < 0 || at.y > 4)
+            {
+                Debug.Log("Cannot place gnome: Out of bounds");
+            }
+            else if (!placedGnomes.ContainsKey(at))
             {
                 if (placementType < 0 || placementType >= fullGnomes.Length)
                 {
@@ -169,10 +169,8 @@ public class GameManager : Singleton<GameManager>
             {
                 Debug.Log("Cannot place gnome: Spot is already occupied.");
             }
-        }
-        else
-        {
-            Debug.Log($"Cannot place gnome: Position {at} is outside the tilemap bounds {tilemapBounds}.");
+            Destroy(placementIndicator);
+            placementIndicator = null;
         }
     }
 
