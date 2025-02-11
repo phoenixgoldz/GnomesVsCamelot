@@ -38,8 +38,8 @@ public class GnomeBase : CharacterBase
     {
         if (animator != null)
         {
-            animator.SetBool("IsAttacking", false);
-            animator.SetBool("IsIdle", true);
+            animator.SetBool("isAttacking", false);
+            animator.SetBool("isIdle", true);
         }
     }
 
@@ -47,8 +47,8 @@ public class GnomeBase : CharacterBase
     {
         if (animator != null)
         {
-            animator.SetBool("IsIdle", false);
-            animator.SetBool("IsAttacking", true);
+            animator.SetBool("isIdle", false);
+            animator.SetBool("isAttacking", true);
         }
     }
 
@@ -57,7 +57,7 @@ public class GnomeBase : CharacterBase
         base.TakeDamage(damage);
         if (animator != null)
         {
-            animator.SetTrigger("IsHurt"); // Play hurt animation
+            animator.SetTrigger("isHurt"); // Play hurt animation
         }
     }
 
@@ -65,7 +65,7 @@ public class GnomeBase : CharacterBase
     {
         if (animator != null)
         {
-            animator.SetBool("IsDead", true);
+            animator.SetBool("isDead", true);
         }
         Destroy(gameObject, 1f); // Allow animation to play before destroying
     }
