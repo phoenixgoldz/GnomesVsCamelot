@@ -102,9 +102,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targets:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   hitRadius: 0.5
   damage: 10
   attackLifespan: 2
-  maxHits: 1
+  maxHits: 3
   ProjectileSpeed: -10

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CharacterBase : MonoBehaviour
+public class CharacterBase : MonoBehaviour, Damageable
 {
     [Header("Character Stats")]
     [SerializeField] protected float health = 100f;

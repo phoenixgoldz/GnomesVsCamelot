@@ -35,7 +35,7 @@ public class KnightBase : CharacterBase
     {
         base.Update();
 
-        if (!isAttacking)
+        if (!isAttacking && Physics2D.Raycast(rayOrigin.position, rayDirection, 0.75f, targetLayer).collider == null)
         {
             Move();
         }
@@ -54,7 +54,7 @@ public class KnightBase : CharacterBase
 
         // Check if Knight reaches losing tilemap position (0,1-5,0)
         Vector3Int currentCell = GameManager.Instance.map.WorldToCell(transform.position);
-        if (currentCell.x == 0 && currentCell.y >= 1 && currentCell.y <= 5)
+        if (currentCell.x <= -1 && currentCell.y >= 1 && currentCell.y <= 5)
         {
             GameManager.Instance.KnightReachedEnd(); // Triggers Game Over
             Destroy(gameObject);
@@ -72,6 +72,7 @@ public class KnightBase : CharacterBase
         {
             animator.SetBool("isWalking", false);
         }
+        isAttacking = true;
         base.Attack(target);
         Invoke(nameof(EndAttack), attackAnimDuration); // Attack animation duration
     }
@@ -132,9 +133,9 @@ public class KnightBase : CharacterBase
         Destroy(gameObject, 0.5f); // Allow death animation to play before removal
     }
 
-    //private void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireSphere(transform.position, range);
-    //}
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(rayOrigin.position, rayOrigin.position + (rayDirection * 0.75f));
+    }
 }
