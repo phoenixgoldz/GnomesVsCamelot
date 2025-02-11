@@ -54,7 +54,7 @@ public class KnightBase : CharacterBase
 
         // Check if Knight reaches losing tilemap position (0,1-5,0)
         Vector3Int currentCell = GameManager.Instance.map.WorldToCell(transform.position);
-        if (currentCell.x == 0 && currentCell.y >= 1 && currentCell.y <= 5)
+        if (currentCell.x <= -1 && currentCell.y >= 1 && currentCell.y <= 5)
         {
             GameManager.Instance.KnightReachedEnd(); // Triggers Game Over
             Destroy(gameObject);
@@ -72,6 +72,7 @@ public class KnightBase : CharacterBase
         {
             animator.SetBool("IsWalking", false);
         }
+        isAttacking = true;
         base.Attack(target);
         Invoke(nameof(EndAttack), attackAnimDuration); // Attack animation duration
     }

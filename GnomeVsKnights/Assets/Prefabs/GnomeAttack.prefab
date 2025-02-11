@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targets:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   hitRadius: 0.5
   damage: 10
   attackLifespan: 2.5
