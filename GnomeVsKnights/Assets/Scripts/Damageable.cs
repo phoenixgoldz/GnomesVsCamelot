@@ -1,21 +1,21 @@
 using UnityEngine;
 
-public class Damageable : MonoBehaviour
+public interface Damageable// : MonoBehaviour
 {
-    [SerializeField] private int health = 50;
+    //[SerializeField] private int health = 50;
 
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
+    public void TakeDamage(int damage);
+    //{
+    //    health -= damage;
+    //
+    //    if (health <= 0)
+    //    {
+    //        Die();
+    //    }
+    //}
 
-        if (health <= 0)
-        {
-            Die();
-        }
-    }
-
-    private void Die()
-    {
-        Destroy(gameObject); 
-    }
+    //protected void Death()
+    //{
+    //    Destroy(gameObject); 
+    //}
 }

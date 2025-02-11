@@ -106,5 +106,5 @@ MonoBehaviour:
   hitRadius: 0.5
   damage: 10
   attackLifespan: 2
-  maxHits: 1
+  maxHits: 3
   ProjectileSpeed: -10

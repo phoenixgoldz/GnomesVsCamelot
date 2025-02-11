@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33d592608c0518a4dbe000fa20647bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 20
   attackRate: 1
   attackDamage: 10
   range: 2
@@ -454,7 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 954d46d749e48274f817f3b75298b496, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
+  health: 100
   attackRate: 1
   attackDamage: 10
   range: 0.5

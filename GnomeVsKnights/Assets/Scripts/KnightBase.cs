@@ -35,7 +35,7 @@ public class KnightBase : CharacterBase
     {
         base.Update();
 
-        if (!isAttacking)
+        if (!isAttacking && Physics2D.Raycast(rayOrigin.position, rayDirection, 0.75f, targetLayer).collider == null)
         {
             Move();
         }
@@ -133,9 +133,9 @@ public class KnightBase : CharacterBase
         Destroy(gameObject, 0.5f); // Allow death animation to play before removal
     }
 
-    //private void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireSphere(transform.position, range);
-    //}
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(rayOrigin.position, rayOrigin.position + (rayDirection * 0.75f));
+    }
 }
