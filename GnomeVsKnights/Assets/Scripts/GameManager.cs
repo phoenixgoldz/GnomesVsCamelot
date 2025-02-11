@@ -19,9 +19,9 @@ public class GameManager : Singleton<GameManager>
     public Dictionary<Vector3Int, GnomeBase> placedGnomes = new Dictionary<Vector3Int, GnomeBase>();
     public List<GameObject> knightQueue;
     private int placementType = 0;
-    public float knightSpawnInterval = 1.5f; 
+    public float knightSpawnInterval = 1.5f;
     private int knightsToSpawn = 0; // Number of knights left to spawn in the current wave
-    private bool isWaveActive = false; 
+    private bool isWaveActive = false;
     private float knightSpawnTimer = 0f;
 
     public TMP_Text energyText;
@@ -34,6 +34,9 @@ public class GameManager : Singleton<GameManager>
     private int currentWave = 1;
     private int maxWaves = 5;
     private bool gameEnded = false;
+
+    public bool isFastForward = false;
+
 
     private void Start()
     {
@@ -103,6 +106,12 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public void ToggleFastForward()
+    {
+        isFastForward = !isFastForward;
+        Time.timeScale = isFastForward ? 2f : 1f; // 2x Speed when active
+        Debug.Log("Fast Forward: " + (isFastForward ? "ON" : "OFF"));
+    }
     public void KnightReachedEnd()
     {
         Debug.Log("A knight reached the base! Game Over.");
@@ -180,7 +189,7 @@ public class GameManager : Singleton<GameManager>
         GameObject knight = Instantiate(knightPrefab);
 
         // Randomize spawn row
-        int randomRow = UnityEngine.Random.Range(0, 5); 
+        int randomRow = UnityEngine.Random.Range(0, 5);
         Vector3Int spawnCell = new Vector3Int(9, randomRow, 0);
         knight.transform.position = GetWorld(spawnCell) + map.cellSize * 0.5f;
     }
@@ -220,10 +229,10 @@ public class GameManager : Singleton<GameManager>
         UpdateWaveUI();
         StartCoroutine(DelayedWaveStart());
 
-        knightsToSpawn = 5 + (currentWave * 2); 
+        knightsToSpawn = 5 + (currentWave * 2);
         isWaveActive = true;
 
-        
+
         winnerPanel.SetActive(false);
 
         // Resume game
@@ -233,7 +242,7 @@ public class GameManager : Singleton<GameManager>
     {
         yield return new WaitForSeconds(2f);
 
-        
+
         currentWave++;
         UpdateWaveUI();
 
