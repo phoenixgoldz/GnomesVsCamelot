@@ -23,6 +23,10 @@ public class CharacterBase : MonoBehaviour
     protected virtual void Start()
     {
         currentHealth = health; // Initialize health
+        if(rayOrigin == null)
+        {
+            rayOrigin = transform;
+        }
     }
 
     protected virtual void FixedUpdate()
