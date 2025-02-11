@@ -5766,14 +5766,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 954d46d749e48274f817f3b75298b496, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  health: 100
+  attackRate: 1
   attackDamage: 10
-  attackCooldown: 1
-  attackRange: 1
+  range: 2
+  attackPrefab: {fileID: 1848762532}
+  rayOrigin: {fileID: 1848762535}
+  rayDirection: {x: 1, y: 0, z: 0}
   targetLayer:
     serializedVersion: 2
     m_Bits: 0
-  maxHealth: 60
+  animator: {fileID: 0}
+  moveSpeed: 1
+  attackAnimDuration: 0.5
 --- !u!4 &1848762535
 Transform:
   m_ObjectHideFlags: 0
