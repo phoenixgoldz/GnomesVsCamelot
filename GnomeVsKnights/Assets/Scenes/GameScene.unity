@@ -6643,6 +6643,10 @@ PrefabInstance:
       propertyPath: rayOrigin
       value: 
       objectReference: {fileID: 623138717}
+    - target: {fileID: 944199193291776296, guid: fc65617db9a7d744d9c54e6a14ae9479, type: 3}
+      propertyPath: ResourceCounter
+      value: 
+      objectReference: {fileID: 1171949225}
     - target: {fileID: 7690917849581216880, guid: fc65617db9a7d744d9c54e6a14ae9479, type: 3}
       propertyPath: m_Name
       value: SwordGnome
@@ -6748,6 +6752,10 @@ PrefabInstance:
       propertyPath: rayOrigin
       value: 
       objectReference: {fileID: 623138717}
+    - target: {fileID: 2530432395558015589, guid: 91eb713fc962ca74ebaed69ecb59665a, type: 3}
+      propertyPath: ResourceCounter
+      value: 
+      objectReference: {fileID: 1171949225}
     - target: {fileID: 7253421772491192574, guid: 91eb713fc962ca74ebaed69ecb59665a, type: 3}
       propertyPath: m_Name
       value: 'AxeGnome '
@@ -6821,6 +6829,10 @@ PrefabInstance:
       propertyPath: rayOrigin
       value: 
       objectReference: {fileID: 623138717}
+    - target: {fileID: 5298330723305720279, guid: 8074a18a8cef69144bc9700d9b8c583f, type: 3}
+      propertyPath: ResourceCounter
+      value: 
+      objectReference: {fileID: 1171949225}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
