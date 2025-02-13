@@ -1,0 +1,1 @@
+C:\Users\dyarbrough\GnomesVsKnights\GnomeVsKnights\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\cxx\Debug\5w244i1w\obj\arm64-v8a
