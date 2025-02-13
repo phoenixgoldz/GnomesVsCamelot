@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 882615980237788957}
   - component: {fileID: 944199193291776296}
   - component: {fileID: 1794518784416941485}
-  m_Layer: 3
+  - component: {fileID: 7040094170493665664}
+  m_Layer: 6
   m_Name: SwordGnome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,12 +106,12 @@ MonoBehaviour:
   attackRate: 1
   attackDamage: 10
   range: 8
-  attackPrefab: {fileID: 7690917849581216880}
-  rayOrigin: {fileID: 0}
+  attackPrefab: {fileID: 0}
+  rayOrigin: {fileID: 9045198233709306633}
   rayDirection: {x: 1, y: 0, z: 0}
   targetLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   animator: {fileID: 1794518784416941485}
   cost: 25
 --- !u!95 &1794518784416941485
@@ -135,3 +136,49 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!61 &7040094170493665664
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7690917849581216880}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.5, y: 0.52}
+    newSize: {x: 0.5, y: 0.52}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.5, y: 0.52}
+  m_EdgeRadius: 0
