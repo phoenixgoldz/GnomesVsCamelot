@@ -229,7 +229,7 @@ public class GameManager : Singleton<GameManager>
         UpdateWaveUI();
         StartCoroutine(DelayedWaveStart());
 
-        knightsToSpawn = 5 + (currentWave * 2);
+        knightsToSpawn = 5 + (currentWave + 2);
         isWaveActive = true;
 
 
@@ -240,7 +240,7 @@ public class GameManager : Singleton<GameManager>
     }
     private IEnumerator DelayedWaveStart()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
 
 
         currentWave++;
