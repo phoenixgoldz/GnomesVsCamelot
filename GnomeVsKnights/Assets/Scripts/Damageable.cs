@@ -1,21 +1,45 @@
 using UnityEngine;
 
-public interface Damageable// : MonoBehaviour
+public interface IDamageable
 {
-    //[SerializeField] private int health = 50;
+    void TakeDamage(int damage);
+}
 
-    public void TakeDamage(int damage);
-    //{
-    //    health -= damage;
-    //
-    //    if (health <= 0)
-    //    {
-    //        Die();
-    //    }
-    //}
+public class Damageable : MonoBehaviour, IDamageable
+{
+    [SerializeField] private int maxHealth = 50;
+    private int currentHealth;
 
-    //protected void Death()
-    //{
-    //    Destroy(gameObject); 
-    //}
+    private Animator animator;
+
+    private void Awake()
+    {
+        currentHealth = maxHealth;
+        animator = GetComponent<Animator>();
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        
+        if (animator != null)
+        {
+            animator.SetTrigger("TakeDamage"); // Trigger hit animation if available
+        }
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        if (animator != null)
+        {
+            animator.SetTrigger("Die"); // Play death animation
+        }
+
+        Destroy(gameObject, 0.5f); // Delay destruction to allow animation to play
+    }
 }
