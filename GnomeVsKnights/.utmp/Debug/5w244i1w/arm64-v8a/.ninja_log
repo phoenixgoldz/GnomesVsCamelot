@@ -1,0 +1,12 @@
+# ninja log v5
+243	908	7611762918476001	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	6e5e1d24b79200ea
+912	1338	7611762922841963	C:/Users/dyarbrough/GnomesVsKnights/GnomeVsKnights/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/5w244i1w/obj/arm64-v8a/libswappywrapper.so	7ed019e865ee1c71
+1	1740	7611762926756888	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	e49cd0c486e793f1
+208	1772	7611762927016922	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	95ace1bf3b3ce58f
+172	1793	7611762927246930	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	1dc82d0a241593eb
+111	1817	7611762927506902	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	86cc50e4a42923c7
+142	1836	7611762927776892	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	1f54f70245b9efb
+83	1868	7611762928176877	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	e735828b9578260b
+55	1980	7611762929280264	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	c7c58cc1f30681d1
+28	2033	7611762929816614	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	9094de19edb4a114
+2034	2269	7611762932226455	C:/Users/dyarbrough/GnomesVsKnights/GnomeVsKnights/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/5w244i1w/obj/arm64-v8a/libgame.so	48ee6be0b186425d
