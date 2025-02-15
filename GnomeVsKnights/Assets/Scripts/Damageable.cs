@@ -37,7 +37,7 @@ public class Damageable : MonoBehaviour, IDamageable
     {
         if (animator != null)
         {
-            animator.SetTrigger("Die"); // Play death animation
+            animator.SetTrigger("isDead"); // Play death animation
         }
 
         Destroy(gameObject, 0.5f); // Delay destruction to allow animation to play
