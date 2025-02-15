@@ -24,7 +24,7 @@ public class Damageable : MonoBehaviour, IDamageable
         
         if (animator != null)
         {
-            animator.SetTrigger("TakeDamage"); // Trigger hit animation if available
+            animator.SetTrigger("isHit"); // Trigger hit animation if available
         }
 
         if (currentHealth <= 0)
