@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
@@ -11,6 +11,7 @@ public class InGameOptions : MonoBehaviour
     [SerializeField] private Slider sfxSlider;
     [SerializeField] private Button applyButton;
     [SerializeField] private Button closeButton;
+    [SerializeField] private Button restartButton; // 🔹 New Restart Button
 
     [Header("Audio Sources")]
     [SerializeField] private AudioSource musicAudioSource;
@@ -31,6 +32,7 @@ public class InGameOptions : MonoBehaviour
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);
         applyButton.onClick.AddListener(ApplySettings);
         closeButton.onClick.AddListener(CloseInGameOptions);
+        restartButton.onClick.AddListener(RestartScene); // 🔹 Hook up Restart Button
 
         // Ensure saving UI is hidden initially
         saveMessage?.gameObject.SetActive(false);
@@ -53,22 +55,21 @@ public class InGameOptions : MonoBehaviour
     public void SetMusicVolume(float volume)
     {
         if (musicAudioSource != null)
-            musicAudioSource.volume = volume; // Directly set volume on AudioSource
+            musicAudioSource.volume = volume;
     }
 
     public void SetSFXVolume(float volume)
     {
         if (sfxAudioSource != null)
-            sfxAudioSource.volume = volume; // Directly set volume on AudioSource
+            sfxAudioSource.volume = volume;
     }
 
     public void ApplySettings()
     {
-        if (isSaving) return; // Prevent multiple saves overlapping
+        if (isSaving) return;
 
         isSaving = true;
-        
-        // Show saving UI immediately
+
         if (savingImage != null) savingImage.gameObject.SetActive(true);
         if (saveMessage != null)
         {
@@ -76,29 +77,23 @@ public class InGameOptions : MonoBehaviour
             saveMessage.text = "Saving...";
         }
 
-        // Start rotating animation
         StartCoroutine(RotateSavingIcon());
 
-        // Save settings permanently
         PlayerPrefs.SetFloat("MusicVolume", musicSlider.value);
         PlayerPrefs.SetFloat("SFXVolume", sfxSlider.value);
         PlayerPrefs.Save();
 
         Debug.Log("Settings Applied!");
 
-        // Start coroutine to hide saving message after a delay
         StartCoroutine(HideSaveMessage());
     }
 
     private IEnumerator HideSaveMessage()
     {
-        yield return new WaitForSeconds(2.5f); // Wait for saving to be "complete"
-
-        // Hide UI
+        yield return new WaitForSeconds(2.5f);
         saveMessage?.gameObject.SetActive(false);
         savingImage?.gameObject.SetActive(false);
-        
-        isSaving = false; // Allow future saves
+        isSaving = false;
     }
 
     private IEnumerator RotateSavingIcon()
@@ -106,11 +101,11 @@ public class InGameOptions : MonoBehaviour
         while (isSaving)
         {
             if (savingImageTransform != null)
-                savingImageTransform.Rotate(0f, 0f, 100f * Time.deltaTime); // Rotate on Z-axis
-
+                savingImageTransform.Rotate(0f, 0f, 100f * Time.deltaTime);
             yield return null;
         }
     }
+
     public void SetGraphicsQuality(int index)
     {
         QualitySettings.SetQualityLevel(index);
@@ -120,13 +115,20 @@ public class InGameOptions : MonoBehaviour
     public void CloseInGameOptions()
     {
         Time.timeScale = 1f;
-        ApplySettings(); // Auto-save settings when closing
+        ApplySettings();
         gameObject.SetActive(false);
     }
 
     public void ReturnToMainMenu()
     {
-        Time.timeScale = 1f;  // Ensure time resumes if paused
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenuScene");
+    }
+
+    // 🔹 **New Method to Restart Scene**
+    public void RestartScene()
+    {
+        Time.timeScale = 1f; // Ensure game time is reset
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reloads the current level
     }
 }
