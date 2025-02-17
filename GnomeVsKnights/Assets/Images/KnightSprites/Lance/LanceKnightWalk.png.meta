@@ -139,12 +139,12 @@ TextureImporter:
       name: LanceKnightWalk_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 162
-        height: 117
+        x: 18
+        y: 6
+        width: 130
+        height: 99
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -161,12 +161,12 @@ TextureImporter:
       name: LanceKnightWalk_1
       rect:
         serializedVersion: 2
-        x: 162
-        y: 0
-        width: 162
-        height: 117
+        x: 186
+        y: 12
+        width: 128
+        height: 93
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -183,12 +183,12 @@ TextureImporter:
       name: LanceKnightWalk_2
       rect:
         serializedVersion: 2
-        x: 324
-        y: 0
-        width: 162
-        height: 117
+        x: 336
+        y: 12
+        width: 132
+        height: 93
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -205,12 +205,12 @@ TextureImporter:
       name: LanceKnightWalk_3
       rect:
         serializedVersion: 2
-        x: 485
-        y: 0
-        width: 149
-        height: 117
+        x: 486
+        y: 11
+        width: 132
+        height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -227,12 +227,12 @@ TextureImporter:
       name: LanceKnightWalk_4
       rect:
         serializedVersion: 2
-        x: 636
-        y: 0
-        width: 162
-        height: 117
+        x: 641
+        y: 11
+        width: 127
+        height: 97
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -249,12 +249,12 @@ TextureImporter:
       name: LanceKnightWalk_5
       rect:
         serializedVersion: 2
-        x: 797
-        y: 0
-        width: 162
-        height: 117
+        x: 799
+        y: 12
+        width: 131
+        height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -271,12 +271,12 @@ TextureImporter:
       name: LanceKnightWalk_6
       rect:
         serializedVersion: 2
-        x: 959
-        y: 0
-        width: 162
-        height: 117
+        x: 954
+        y: 12
+        width: 135
+        height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

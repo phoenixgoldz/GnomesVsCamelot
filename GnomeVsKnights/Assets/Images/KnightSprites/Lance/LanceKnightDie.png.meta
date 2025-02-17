@@ -139,10 +139,10 @@ TextureImporter:
       name: LanceKnightDie_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 0
-        width: 165
-        height: 156
+        x: 0
+        y: 24
+        width: 162
+        height: 114
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,10 +161,10 @@ TextureImporter:
       name: LanceKnightDie_1
       rect:
         serializedVersion: 2
-        x: 170
-        y: 0
-        width: 160
-        height: 156
+        x: 186
+        y: 24
+        width: 162
+        height: 114
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,10 +183,10 @@ TextureImporter:
       name: LanceKnightDie_2
       rect:
         serializedVersion: 2
-        x: 330
-        y: 0
-        width: 151
-        height: 156
+        x: 372
+        y: 25
+        width: 156
+        height: 113
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,10 +205,10 @@ TextureImporter:
       name: LanceKnightDie_3
       rect:
         serializedVersion: 2
-        x: 480
-        y: 0
-        width: 152
-        height: 156
+        x: 528
+        y: 30
+        width: 165
+        height: 96
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,10 +227,10 @@ TextureImporter:
       name: LanceKnightDie_4
       rect:
         serializedVersion: 2
-        x: 633
-        y: 3
-        width: 171
-        height: 153
+        x: 702
+        y: 30
+        width: 170
+        height: 86
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -239,8 +239,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2dfd5c62b4d38104891a1e9cdb01f044
-      internalID: -2111819316
+      spriteID: d7e90d5d9e8edcb4c806798e5524effb
+      internalID: -10965607
       vertices: []
       indices: 
       edges: []
@@ -249,10 +249,10 @@ TextureImporter:
       name: LanceKnightDie_5
       rect:
         serializedVersion: 2
-        x: 811
-        y: 0
-        width: 165
-        height: 156
+        x: 876
+        y: 31
+        width: 170
+        height: 77
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -261,8 +261,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65933f68938c7f24f814984b0b762891
-      internalID: 1274801940
+      spriteID: 7c7090309fdfe394cbe6e1575bc5527e
+      internalID: 78082875
       vertices: []
       indices: 
       edges: []
@@ -271,10 +271,10 @@ TextureImporter:
       name: LanceKnightDie_6
       rect:
         serializedVersion: 2
-        x: 982
-        y: 0
-        width: 165
-        height: 156
+        x: 1062
+        y: 25
+        width: 164
+        height: 71
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -283,8 +283,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c8fb15626436e94c80d38922d7fc852
-      internalID: -378018327
+      spriteID: 00a1cf13e16ebb144b648e7c2f890b0b
+      internalID: -1436956296
       vertices: []
       indices: 
       edges: []
@@ -307,9 +307,9 @@ TextureImporter:
       LanceKnightDie_1: -1796937357
       LanceKnightDie_2: -1257375433
       LanceKnightDie_3: -584145061
-      LanceKnightDie_4: -2111819316
-      LanceKnightDie_5: 1274801940
-      LanceKnightDie_6: -378018327
+      LanceKnightDie_4: -10965607
+      LanceKnightDie_5: 78082875
+      LanceKnightDie_6: -1436956296
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -18,7 +18,7 @@ public class Damageable : MonoBehaviour, IDamageable
         animator = GetComponent<Animator>();
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         currentHealth -= damage;
         

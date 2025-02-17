@@ -139,10 +139,10 @@ TextureImporter:
       name: LanceKnightAttack_0
       rect:
         serializedVersion: 2
-        x: 11
+        x: 0
         y: 12
-        width: 325
-        height: 111
+        width: 168
+        height: 114
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,10 +161,10 @@ TextureImporter:
       name: LanceKnightAttack_1
       rect:
         serializedVersion: 2
-        x: 324
-        y: 12
-        width: 158
-        height: 108
+        x: 172
+        y: 7
+        width: 161
+        height: 109
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,10 +183,10 @@ TextureImporter:
       name: LanceKnightAttack_2
       rect:
         serializedVersion: 2
-        x: 474
-        y: 14
-        width: 138
-        height: 112
+        x: 336
+        y: 1
+        width: 150
+        height: 113
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,9 +205,9 @@ TextureImporter:
       name: LanceKnightAttack_3
       rect:
         serializedVersion: 2
-        x: 621
-        y: 12
-        width: 129
+        x: 483
+        y: 0
+        width: 146
         height: 114
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -227,10 +227,10 @@ TextureImporter:
       name: LanceKnightAttack_4
       rect:
         serializedVersion: 2
-        x: 774
-        y: 12
-        width: 130
-        height: 109
+        x: 640
+        y: 6
+        width: 128
+        height: 114
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -249,9 +249,9 @@ TextureImporter:
       name: LanceKnightAttack_5
       rect:
         serializedVersion: 2
-        x: 934
-        y: 12
-        width: 158
+        x: 792
+        y: 6
+        width: 132
         height: 114
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -263,6 +263,28 @@ TextureImporter:
       bones: []
       spriteID: 3d7e350da9f89544a93f1306421f6ec9
       internalID: 573023251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LanceKnightAttack_6
+      rect:
+        serializedVersion: 2
+        x: 952
+        y: 9
+        width: 158
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d827d8d130269e542a9cca171fdb40ca
+      internalID: -1760259599
       vertices: []
       indices: 
       edges: []
@@ -287,6 +309,7 @@ TextureImporter:
       LanceKnightAttack_3: -1165826709
       LanceKnightAttack_4: 100472347
       LanceKnightAttack_5: 573023251
+      LanceKnightAttack_6: -1760259599
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

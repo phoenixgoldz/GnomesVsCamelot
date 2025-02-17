@@ -27,7 +27,7 @@ public class KnightBase : CharacterBase
 
         if (animator != null)
         {
-            animator.SetBool("isWalking", true); 
+            animator.SetTrigger("Idle");
         }
     }
 
@@ -62,7 +62,7 @@ public class KnightBase : CharacterBase
 
         if (animator != null)
         {
-            animator.SetBool("isWalking", true);
+            animator.SetTrigger("Idle");
         }
     }
 
@@ -70,7 +70,7 @@ public class KnightBase : CharacterBase
     {
         if (animator != null)
         {
-            animator.SetBool("isWalking", false);
+            animator.SetTrigger("Attack");
         }
         isAttacking = true;
         base.Attack(target);
@@ -108,8 +108,7 @@ public class KnightBase : CharacterBase
 
         if (animator != null)
         {
-            animator.SetBool("isWalking", true);
-            animator.SetBool("isAttacking", false);
+            animator.SetTrigger("Idle");
         }
     }
 
@@ -127,7 +126,7 @@ public class KnightBase : CharacterBase
     {
         if (animator != null)
         {
-            animator.SetBool("isDead", true);
+            animator.SetTrigger("isDead");
         }
 
         Destroy(gameObject, 0.5f); // Allow death animation to play before removal

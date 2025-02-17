@@ -139,12 +139,12 @@ TextureImporter:
       name: LanceKnightHurtpng_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 0
-        width: 163
-        height: 139
+        x: 20
+        y: 12
+        width: 154
+        height: 112
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -161,12 +161,12 @@ TextureImporter:
       name: LanceKnightHurtpng_1
       rect:
         serializedVersion: 2
-        x: 173
-        y: 0
-        width: 163
-        height: 139
+        x: 54
+        y: 122
+        width: 4
+        height: 4
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -183,12 +183,12 @@ TextureImporter:
       name: LanceKnightHurtpng_2
       rect:
         serializedVersion: 2
-        x: 334
-        y: 2
-        width: 158
-        height: 137
+        x: 190
+        y: 13
+        width: 147
+        height: 110
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -205,12 +205,12 @@ TextureImporter:
       name: LanceKnightHurtpng_3
       rect:
         serializedVersion: 2
-        x: 490
-        y: 0
-        width: 144
-        height: 139
+        x: 945
+        y: 12
+        width: 153
+        height: 114
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -227,12 +227,12 @@ TextureImporter:
       name: LanceKnightHurtpng_4
       rect:
         serializedVersion: 2
-        x: 637
-        y: 0
-        width: 143
-        height: 139
+        x: 349
+        y: 12
+        width: 142
+        height: 109
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -249,12 +249,12 @@ TextureImporter:
       name: LanceKnightHurtpng_5
       rect:
         serializedVersion: 2
-        x: 782
-        y: 0
-        width: 163
-        height: 139
+        x: 490
+        y: 9
+        width: 137
+        height: 108
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -271,12 +271,12 @@ TextureImporter:
       name: LanceKnightHurtpng_6
       rect:
         serializedVersion: 2
-        x: 946
-        y: 0
-        width: 163
-        height: 139
+        x: 638
+        y: 11
+        width: 136
+        height: 109
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -285,6 +285,28 @@ TextureImporter:
       bones: []
       spriteID: be12d4dbb95f62e4d95d5bd416b05502
       internalID: 1567932996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LanceKnightHurtpng_7
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 12
+        width: 143
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba17e88416abbb04dbff5c1c468b7ec8
+      internalID: -268121301
       vertices: []
       indices: 
       edges: []
@@ -310,6 +332,7 @@ TextureImporter:
       LanceKnightHurtpng_4: -730058198
       LanceKnightHurtpng_5: -130050301
       LanceKnightHurtpng_6: 1567932996
+      LanceKnightHurtpng_7: -268121301
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
