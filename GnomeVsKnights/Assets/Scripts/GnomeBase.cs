@@ -13,8 +13,7 @@ public class GnomeBase : CharacterBase
 
     protected override void Start()
     {
-        base.Start();
-        animator = GetComponent<Animator>(); // Get Animator component
+        base.Start(); // Inherits initialization from CharacterBase
         SetIdleState();
 
         CurrentResources = int.Parse(ResourceCounter.text);

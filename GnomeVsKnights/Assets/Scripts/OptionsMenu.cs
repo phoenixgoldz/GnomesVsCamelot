@@ -18,9 +18,8 @@ public class OptionsMenu : MonoBehaviour
     public Image savingImage;
     public RectTransform savingImageTransform;
 
-    private float tempMusicVolume;
-    private float tempSoundVolume;
-    private bool tempSubtitles;
+    private float tempMusicVolume = 0.5f;
+    private float tempSoundVolume = 0.5f;
 
     private void Start()
     {
@@ -47,10 +46,9 @@ public class OptionsMenu : MonoBehaviour
     {
         PlayerPrefs.SetFloat("MusicVolume", tempMusicVolume);
         PlayerPrefs.SetFloat("SoundVolume", tempSoundVolume);
-        PlayerPrefs.SetInt("Subtitles", tempSubtitles ? 1 : 0);
         PlayerPrefs.Save();
 
-        Debug.LogFormat("Settings Applied: Music Volume = " + (tempMusicVolume * 100) + "%", "SoundVolume = " + (tempSoundVolume * 100) + "%", "Subtitles = " + tempSubtitles);
+        Debug.LogFormat("Settings Applied: Music Volume = " + (tempMusicVolume * 100) + "%", "SoundVolume = " + (tempSoundVolume * 100) + "%");
         StartCoroutine(ShowSaveMessage());
     }
 

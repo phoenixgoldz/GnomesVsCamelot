@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class InGameOptions : MonoBehaviour
 {
@@ -110,10 +111,22 @@ public class InGameOptions : MonoBehaviour
             yield return null;
         }
     }
+    public void SetGraphicsQuality(int index)
+    {
+        QualitySettings.SetQualityLevel(index);
+        PlayerPrefs.SetInt("GraphicsQuality", index);
+    }
 
     public void CloseInGameOptions()
     {
+        Time.timeScale = 1f;
         ApplySettings(); // Auto-save settings when closing
         gameObject.SetActive(false);
+    }
+
+    public void ReturnToMainMenu()
+    {
+        Time.timeScale = 1f;  // Ensure time resumes if paused
+        SceneManager.LoadScene("MainMenuScene");
     }
 }
