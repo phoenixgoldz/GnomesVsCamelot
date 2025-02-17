@@ -29,7 +29,7 @@ public class RangedAttackBase : AttackBase
         }
     }
 
-    protected override void OnTriggerEnter2D(Collider2D other)
+    protected void OnTriggerEnter2D(Collider2D other)
     {
         if (other.TryGetComponent(out IDamageable enemy) && !hasHitTarget)
         {

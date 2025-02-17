@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CharacterBase : MonoBehaviour, Damageable
+public class CharacterBase : Damageable
 {
     [Header("Character Stats")]
     [SerializeField] protected float health = 100f;
@@ -82,9 +82,10 @@ public class CharacterBase : MonoBehaviour, Damageable
     }
 
     // Handles taking damage
-    public virtual void TakeDamage(int damage) // Marked as virtual
+    public override void TakeDamage(int damage) // Marked as virtual //This is an inherited function from Damageable, should be marked as virtual in Damageable not here, here it should be override
     {
         currentHealth -= damage;
+        animator.SetTrigger("isHit");
         if (currentHealth <= 0) Death();
     }
 
