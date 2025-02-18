@@ -176,9 +176,8 @@ public class GameManager : Singleton<GameManager>
                     Debug.LogError($"Invalid placementType: {placementType}. Array size: {fullGnomes.Length}");
                     return;
                 }
-                GnomeBase gnomePlaced = fullGnomes[placementType].GetComponent<GnomeBase>();
-                //if (playerEnergy > 0)
-                if (playerEnergy > gnomePlaced.cost)
+
+                if (playerEnergy > 0)
                 {
                     GameObject gnome = Instantiate(fullGnomes[placementType]);
                     gnome.transform.position = GetWorld(at) + new Vector3(map.cellSize.x * 0.5f, map.cellSize.y * 0.5f, 0);
@@ -188,7 +187,7 @@ public class GameManager : Singleton<GameManager>
 
                     Debug.Log($"Placed gnome of type {placementType} at {at}");
 
-                    playerEnergy -= gnomeData.cost;
+                    playerEnergy -= 25;
                 }
             }
             else
