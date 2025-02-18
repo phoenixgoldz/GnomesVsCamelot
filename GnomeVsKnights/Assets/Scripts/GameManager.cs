@@ -43,7 +43,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        knightSpawnTimer = knightSpawnInterval;        
+        knightSpawnTimer = knightSpawnInterval;
         UpdateWaveUI();
         pauseMenu.SetActive(false);
         winnerPanel.SetActive(false);
@@ -67,7 +67,7 @@ public class GameManager : Singleton<GameManager>
         if (input == 1)
         {
             placementType = -1;
-            for(int i = 0; i < gnomeUILocations.Length; i++)
+            for (int i = 0; i < gnomeUILocations.Length; i++)
             {
                 if (RectTransformUtility.RectangleContainsScreenPoint(gnomeUILocations[i], getInputLocation()))
                 {
@@ -165,7 +165,7 @@ public class GameManager : Singleton<GameManager>
             Vector3Int at = GetCell(GetWorld(getInputLocation()));
 
             //Use hardcoded values instead of cell bounds because if someone accidentally places a cell far away it would be a pain to identify the cause and location
-            if(at.x < 0 || at.x > 8 || at.y < 0 || at.y > 4)
+            if (at.x < 0 || at.x > 8 || at.y < 0 || at.y > 4)
             {
                 Debug.Log("Cannot place gnome: Out of bounds");
             }
@@ -188,7 +188,7 @@ public class GameManager : Singleton<GameManager>
                     Debug.Log($"Placed gnome of type {placementType} at {at}");
 
                     playerEnergy -= 25;
-                }                
+                }
             }
             else
             {
@@ -349,14 +349,51 @@ public class GameManager : Singleton<GameManager>
 
     public void TogglePauseMenu()
     {
-        pauseMenu.SetActive(!pauseMenu.activeSelf);
-        Time.timeScale = pauseMenu.activeSelf ? 0 : 1;
+        bool isPaused = !pauseMenu.activeSelf;
+        pauseMenu.SetActive(isPaused);
+
+        if (isPaused)
+        {
+            Time.timeScale = 0; // Freeze the game
+            AudioListener.pause = true; // Pause audio
+        }
+        else
+        {
+            Time.timeScale = 1; // Resume game
+            AudioListener.pause = false;
+        }
     }
+
     public void RestartGame()
     {
         Time.timeScale = 1; // Ensure time is running
+
+        // Destroy all placed gnomes
+        foreach (var gnome in placedGnomes.Values)
+        {
+            Destroy(gnome.gameObject);
+        }
+        placedGnomes.Clear();
+
+        // Reset energy
+        playerEnergy = 100;
+        UpdateEnergyUI();
+
+        // Reset knights
+        foreach (GameObject knight in knightQueue)
+        {
+            Destroy(knight);
+        }
+        knightQueue.Clear();
+
+        // Reset wave counter
+        currentWave = 1;
+        UpdateWaveUI();
+
+        // Reload the scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
 
     public void ReturnToMainMenu()
     {

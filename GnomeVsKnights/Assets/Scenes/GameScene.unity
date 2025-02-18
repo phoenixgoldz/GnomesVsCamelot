@@ -4410,7 +4410,7 @@ MonoBehaviour:
   - {fileID: 558074509}
   - {fileID: 1802641361}
   knightQueue:
-  - {fileID: 1848762532}
+  - {fileID: 826491745680627015, guid: 5b80c4db00d4bfc4e803083dc3f350af, type: 3}
   energyText: {fileID: 1171949225}
   waveText: {fileID: 1558178937}
   pauseMenu: {fileID: 294668995}
@@ -9965,6 +9965,10 @@ PrefabInstance:
       value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 3157623652887934443, guid: 5b80c4db00d4bfc4e803083dc3f350af, type: 3}
+      propertyPath: maxHealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3157623652887934443, guid: 5b80c4db00d4bfc4e803083dc3f350af, type: 3}
       propertyPath: attackPrefab
       value: 
       objectReference: {fileID: 1848762532}
@@ -9985,12 +9989,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1676843778810569285, guid: 6a2b74c1fddd8a84bae05cde19b1c07e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676843778810569285, guid: 6a2b74c1fddd8a84bae05cde19b1c07e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676843778810569285, guid: 6a2b74c1fddd8a84bae05cde19b1c07e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676843778810569285, guid: 6a2b74c1fddd8a84bae05cde19b1c07e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -11.690001
       objectReference: {fileID: 0}
     - target: {fileID: 1676843778810569285, guid: 6a2b74c1fddd8a84bae05cde19b1c07e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 1676843778810569285, guid: 6a2b74c1fddd8a84bae05cde19b1c07e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10024,13 +10040,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1676843778810569285, guid: 6a2b74c1fddd8a84bae05cde19b1c07e, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4614349903216025058, guid: 6a2b74c1fddd8a84bae05cde19b1c07e, type: 3}
       propertyPath: m_Name
       value: stump_energy_0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4614349903216025058, guid: 6a2b74c1fddd8a84bae05cde19b1c07e, type: 3}
-      propertyPath: m_Layer
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -20,27 +20,40 @@ public class LocalGameManager : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.cam = cam;
-        GameManager.Instance.map = tilemap;
-        GameManager.Instance.placementPrefabs = placementPrefabs;
-        GameManager.Instance.fullGnomes = fullGnomes;
-        GameManager.Instance.gnomeUILocations = gnomeUILocations;
-        GameManager.Instance.knightQueue = knightQueue;
-        GameManager.Instance.energyText = energyText;
-        GameManager.Instance.waveText = waveText;
-        GameManager.Instance.pauseMenu = pauseMenu;
-        GameManager.Instance.winnerPanel = winnerPanel;
-        GameManager.Instance.gameOverPanel = gameOverPanel;
-        GameManager.Instance.knightSpawnInterval = knightSpawnInterval;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.cam = cam;
+            GameManager.Instance.map = tilemap;
+            GameManager.Instance.placementPrefabs = placementPrefabs;
+            GameManager.Instance.fullGnomes = fullGnomes;
+            GameManager.Instance.gnomeUILocations = gnomeUILocations;
+            GameManager.Instance.knightQueue = knightQueue;
+            GameManager.Instance.energyText = energyText;
+            GameManager.Instance.waveText = waveText;
+            GameManager.Instance.pauseMenu = pauseMenu;
+            GameManager.Instance.winnerPanel = winnerPanel;
+            GameManager.Instance.gameOverPanel = gameOverPanel;
+            GameManager.Instance.knightSpawnInterval = knightSpawnInterval;
+        }
+        else
+        {
+            Debug.LogError("GameManager Instance is NULL in LocalGameManager!");
+        }
 
-        RemovePrePlacedGnomes(); // Remove all pre-placed gnomes
+        Invoke(nameof(RemovePrePlacedGnomes), 0.1f); // Small delay to ensure objects are initialized
     }
 
     private void RemovePrePlacedGnomes()
     {
-        foreach (GnomeBase gnome in FindObjectsOfType<GnomeBase>())
+        GnomeBase[] prePlacedGnomes = Object.FindObjectsByType<GnomeBase>(FindObjectsSortMode.None);
+
+        if (prePlacedGnomes.Length > 0)
         {
-            Destroy(gnome.gameObject); // Remove all pre-spawned gnomes
+            foreach (GnomeBase gnome in prePlacedGnomes)
+            {
+                Destroy(gnome.gameObject);
+            }
+            Debug.Log($"Removed {prePlacedGnomes.Length} pre-placed gnomes.");
         }
     }
 }
