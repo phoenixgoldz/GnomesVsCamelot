@@ -354,45 +354,46 @@ public class GameManager : Singleton<GameManager>
 
         if (isPaused)
         {
-            Time.timeScale = 0; // Freeze the game
-            AudioListener.pause = true; // Pause audio
+            Time.timeScale = 0; // Stop all movement and physics
+            AudioListener.pause = true; // Pause all audio
+            PauseAllEntities(true);
         }
         else
         {
             Time.timeScale = 1; // Resume game
             AudioListener.pause = false;
+            PauseAllEntities(false);
+        }
+    }
+    // Stops all moving objects and animations
+    private void PauseAllEntities(bool isPaused)
+    {
+        KnightBase[] knights = FindObjectsByType<KnightBase>(FindObjectsSortMode.None);
+        foreach (KnightBase knight in knights)
+        {
+            knight.enabled = !isPaused;
+        }
+
+        GnomeBase[] gnomes = FindObjectsByType<GnomeBase>(FindObjectsSortMode.None);
+        foreach (GnomeBase gnome in gnomes)
+        {
+            Animator animator = gnome.GetComponent<Animator>();
+            if (animator != null) animator.enabled = !isPaused;
+        }
+
+        AttackBase[] attacks = FindObjectsByType<AttackBase>(FindObjectsSortMode.None);
+        foreach (AttackBase attack in attacks)
+        {
+            attack.enabled = !isPaused;
         }
     }
 
     public void RestartGame()
     {
-        Time.timeScale = 1; // Ensure time is running
-
-        // Destroy all placed gnomes
-        foreach (var gnome in placedGnomes.Values)
-        {
-            Destroy(gnome.gameObject);
-        }
-        placedGnomes.Clear();
-
-        // Reset energy
-        playerEnergy = 100;
-        UpdateEnergyUI();
-
-        // Reset knights
-        foreach (GameObject knight in knightQueue)
-        {
-            Destroy(knight);
-        }
-        knightQueue.Clear();
-
-        // Reset wave counter
-        currentWave = 1;
-        UpdateWaveUI();
-
-        // Reload the scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1; // Ensure the game resumes
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene
     }
+
 
 
     public void ReturnToMainMenu()
