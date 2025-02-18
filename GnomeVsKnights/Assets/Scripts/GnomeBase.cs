@@ -5,9 +5,6 @@ public class GnomeBase : CharacterBase
 {
     [Header("Gnome Settings")]
     [SerializeField] private int cost = 25;
-    [SerializeField] private TextMeshProUGUI ResourceCounter;
-
-    private int CurrentResources;
 
     public Vector3Int Cell { get; set; }
 
@@ -15,10 +12,6 @@ public class GnomeBase : CharacterBase
     {
         base.Start(); // Inherits initialization from CharacterBase
         SetIdleState();
-
-        CurrentResources = int.Parse(ResourceCounter.text);
-        CurrentResources -= cost;
-        ResourceCounter.text = CurrentResources.ToString();
     }
 
     protected override void Update()
