@@ -4410,7 +4410,7 @@ MonoBehaviour:
   - {fileID: 558074509}
   - {fileID: 1802641361}
   knightQueue:
-  - {fileID: 1848762532}
+  - {fileID: 826491745680627015, guid: 5b80c4db00d4bfc4e803083dc3f350af, type: 3}
   energyText: {fileID: 1171949225}
   waveText: {fileID: 1558178937}
   pauseMenu: {fileID: 294668995}
@@ -9967,7 +9967,7 @@ PrefabInstance:
     - target: {fileID: 3157623652887934443, guid: 5b80c4db00d4bfc4e803083dc3f350af, type: 3}
       propertyPath: attackPrefab
       value: 
-      objectReference: {fileID: 1848762532}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
