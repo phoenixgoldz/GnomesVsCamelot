@@ -13,16 +13,21 @@ public class BackgroundScaler : MonoBehaviour
         if (sr == null) return;
 
         Camera cam = Camera.main;
+        float screenHeight = cam.orthographicSize * 2f;
+        float screenWidth = screenHeight * Screen.width / Screen.height;
 
-        float screenHeight = cam.orthographicSize * 2; // Get screen height in world units
-        float screenWidth = screenHeight * Screen.width / Screen.height; // Calculate width in world units
+        float spriteHeight = sr.sprite.bounds.size.y;
+        float spriteWidth = sr.sprite.bounds.size.x;
 
-        Vector3 newScale = transform.localScale;
-        newScale.x = screenWidth / sr.bounds.size.x;  // Scale X based on screen width
-        newScale.y = screenHeight / sr.bounds.size.y; // Scale Y based on screen height
-        transform.localScale = newScale;
+        // Ensure full coverage without distortion
+        float scaleY = screenHeight / spriteHeight;
+        float scaleX = screenWidth / spriteWidth;
+        float finalScale = Mathf.Max(scaleX, scaleY); // Use the larger scale
 
-        // Ensure background is centered
+        // Apply scaling
+        transform.localScale = new Vector3(finalScale, finalScale, 1f);
+
+        // Center the background
         transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y, transform.position.z);
     }
 }
