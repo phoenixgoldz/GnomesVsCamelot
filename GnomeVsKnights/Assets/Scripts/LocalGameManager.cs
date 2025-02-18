@@ -32,7 +32,15 @@ public class LocalGameManager : MonoBehaviour
         GameManager.Instance.winnerPanel = winnerPanel;
         GameManager.Instance.gameOverPanel = gameOverPanel;
         GameManager.Instance.knightSpawnInterval = knightSpawnInterval;
+
+        RemovePrePlacedGnomes(); // Remove all pre-placed gnomes
     }
 
-
+    private void RemovePrePlacedGnomes()
+    {
+        foreach (GnomeBase gnome in FindObjectsOfType<GnomeBase>())
+        {
+            Destroy(gnome.gameObject); // Remove all pre-spawned gnomes
+        }
+    }
 }

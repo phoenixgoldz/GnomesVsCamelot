@@ -3,66 +3,78 @@ using UnityEngine;
 public class KnightBase : CharacterBase
 {
     [Header("Movement")]
-    [SerializeField] private float moveSpeed = 1f; 
+    [SerializeField] private float moveSpeed = 1f;
+    private bool isMoving = true;
 
     [Header("Attack")]
-    //[SerializeField] private int attackDamage = 10;
-    //[SerializeField] private float attackCooldown = 1f;
-    //[SerializeField] private float attackRange = 0.5f;
-    //[SerializeField] private LayerMask targetLayer;
+    [SerializeField] private float attackRange = 0.5f;
+  //  [SerializeField] private new float attackCooldown = 1f;
+    private float attackTimer = 0f;
+    private bool isAttacking = false;
 
     [Header("Health")]
-    //[SerializeField] private int maxHealth = 50;
-    //private int currentHealth;
-
-    private float attackTimer = 0f;
     [SerializeField] private float attackAnimDuration = 0.5f;
-    private bool isAttacking = false;
-    //private Animator animator;
 
     protected override void Start()
     {
-        currentHealth = health;
-        animator = GetComponent<Animator>();
-
-        if (animator != null)
-        {
-            animator.SetTrigger("Idle");
-        }
+        base.Start();
+        animator.SetBool("isWalking", true); // Start walking by default
     }
 
     protected override void Update()
     {
         base.Update();
 
-        if (!isAttacking && Physics2D.Raycast(rayOrigin.position, rayDirection, 0.75f, targetLayer).collider == null)
+        if (!isAttacking)
+        {
+            DetectGnome();
+        }
+
+        if (isMoving)
         {
             Move();
         }
 
-        //if (attackTimer > 0)
-        //{
-        //    attackTimer -= Time.deltaTime;
-        //}
-
-        //DetectAndAttackTargets();
+        if (attackTimer > 0)
+        {
+            attackTimer -= Time.deltaTime;
+        }
     }
 
     private void Move()
     {
         transform.position += Vector3.left * moveSpeed * Time.deltaTime; // Move left
 
-        // Check if Knight reaches losing tilemap position (0,1-5,0)
         Vector3Int currentCell = GameManager.Instance.map.WorldToCell(transform.position);
         if (currentCell.x <= -1 && currentCell.y >= 1 && currentCell.y <= 5)
         {
-            GameManager.Instance.KnightReachedEnd(); // Triggers Game Over
+            GameManager.Instance.KnightReachedEnd();
             Destroy(gameObject);
         }
 
         if (animator != null)
         {
-            animator.SetTrigger("Idle");
+            animator.SetBool("isWalking", true);
+        }
+    }
+
+    private void DetectGnome()
+    {
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, attackRange, targetLayer);
+        if (hit != null)
+        {
+            isMoving = false;
+            isAttacking = true;
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isAttacking", true);
+            Attack(hit.gameObject);
+        }
+        else
+        {
+            isMoving = true;
+            isAttacking = false;
+            animator.SetBool("isWalking", true);
+            animator.SetBool("isAttacking", false);
         }
     }
 
@@ -74,67 +86,48 @@ public class KnightBase : CharacterBase
         }
         isAttacking = true;
         base.Attack(target);
-        Invoke(nameof(EndAttack), attackAnimDuration); // Attack animation duration
+        Invoke(nameof(EndAttack), attackAnimDuration);
     }
-
-    //private void DetectAndAttackTargets()
-    //{
-    //    Collider2D hitTarget = Physics2D.OverlapCircle(transform.position, range, targetLayer);
-
-    //    if (hitTarget != null && attackTimer <= 0)
-    //    {
-    //        isAttacking = true;
-
-    //        if (animator != null)
-    //        {
-    //            animator.SetBool("IsWalking", false);
-    //            animator.SetBool("IsAttacking", true);
-    //        }
-
-    //        Damageable target = hitTarget.GetComponent<Damageable>();
-    //        if (target != null)
-    //        {
-    //            target.TakeDamage(attackDamage);
-    //        }
-
-    //        attackTimer = attackCooldown;
-    //        Invoke(nameof(EndAttack), attackAnimDuration); // Attack animation duration
-    //    }
-    //}
 
     private void EndAttack()
     {
         isAttacking = false;
+        isMoving = true;
+        animator.SetBool("isWalking", true);
+        animator.SetBool("isAttacking", false);
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
 
         if (animator != null)
         {
-            animator.SetTrigger("Idle");
+            animator.SetTrigger("isHit"); // Play hurt animation
         }
+
+        Invoke(nameof(ResetHitState), 0.5f); // After hit animation, return to state
     }
 
-    //public void TakeDamage(int damage)
-    //{
-    //    currentHealth -= damage;
-
-    //    if (currentHealth <= 0)
-    //    {
-    //        Die();
-    //    }
-    //}
+    private void ResetHitState()
+    {
+        animator.SetBool("isHit", false);
+    }
 
     protected override void Death()
     {
-        if (animator != null)
-        {
-            animator.SetTrigger("isDead");
-        }
+        isMoving = false;
+        isAttacking = false;
+        animator.SetBool("isWalking", false);
+        animator.SetBool("isAttacking", false);
+        animator.SetBool("isDead", true);
 
-        Destroy(gameObject, 0.5f); // Allow death animation to play before removal
+        Destroy(gameObject, 1f); // Delay destruction for animation
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(rayOrigin.position, rayOrigin.position + (rayDirection * 0.75f));
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }
