@@ -177,7 +177,8 @@ public class GameManager : Singleton<GameManager>
                     return;
                 }
 
-                if (playerEnergy > 0)
+                GnomeBase gnomeSelected = fullGnomes[placementType].GetComponent<GnomeBase>();
+                if (playerEnergy > gnomeSelected.cost)
                 {
                     GameObject gnome = Instantiate(fullGnomes[placementType]);
                     gnome.transform.position = GetWorld(at) + new Vector3(map.cellSize.x * 0.5f, map.cellSize.y * 0.5f, 0);
@@ -187,7 +188,7 @@ public class GameManager : Singleton<GameManager>
 
                     Debug.Log($"Placed gnome of type {placementType} at {at}");
 
-                    playerEnergy -= 25;
+                    playerEnergy -= gnomeData.cost;
                 }
             }
             else
