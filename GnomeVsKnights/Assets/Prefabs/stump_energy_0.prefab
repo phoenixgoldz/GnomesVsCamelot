@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1676843778810569285}
   - component: {fileID: 6370185350037542064}
   - component: {fileID: 242643439983989000}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: stump_energy_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -381092378, guid: a8f12a18ac8ea7945b1d0d7cdcdf5a95, type: 3}
+  m_Sprite: {fileID: 1696595238, guid: c9adb8390d12828469c863158e9d138c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
