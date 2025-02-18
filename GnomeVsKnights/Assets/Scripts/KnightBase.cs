@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class KnightBase : CharacterBase
 {
@@ -8,7 +8,7 @@ public class KnightBase : CharacterBase
 
     [Header("Attack")]
     [SerializeField] private float attackRange = 0.5f;
-  //  [SerializeField] private new float attackCooldown = 1f;
+    //  [SerializeField] private new float attackCooldown = 1f;
     private float attackTimer = 0f;
     private bool isAttacking = false;
 
@@ -84,10 +84,25 @@ public class KnightBase : CharacterBase
         {
             animator.SetTrigger("Attack");
         }
+
         isAttacking = true;
         base.Attack(target);
+
+        if (target.TryGetComponent(out GnomeBase gnome))
+        {
+            gnome.TakeDamage(attackDamage);
+
+            if (gnome.Health <= 0) // ✅ Now this will work!
+            {
+                Vector3Int gnomeCell = GameManager.Instance.map.WorldToCell(target.transform.position);
+                GameManager.Instance.KillGnome(gnomeCell);
+            }
+        }
+
         Invoke(nameof(EndAttack), attackAnimDuration);
     }
+
+
 
     private void EndAttack()
     {

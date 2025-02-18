@@ -5,6 +5,7 @@ public class CharacterBase : Damageable
     [Header("Character Stats")]
     [SerializeField] protected float health = 100f;
     protected float currentHealth;
+    public float Health => currentHealth; // Public getter for Health
 
     [Header("Attack Settings")]
     [SerializeField] protected float attackRate = 1f; // Attack cooldown in seconds
