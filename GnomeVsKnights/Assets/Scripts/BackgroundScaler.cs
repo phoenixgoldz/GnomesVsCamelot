@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class BackgroundScaler : MonoBehaviour
 {
+    private readonly Vector3 referenceScale = new Vector3(1.40493071f, 1.33465612f, 1.40493071f); // Your manually set scale for 16:9
+    private readonly float referenceAspectRatio = 16f / 9f; // The target aspect ratio for your reference scale
+
     private void Start()
     {
         AdjustBackgroundSize();
@@ -13,21 +16,19 @@ public class BackgroundScaler : MonoBehaviour
         if (sr == null) return;
 
         Camera cam = Camera.main;
-        float screenHeight = cam.orthographicSize * 2f;
-        float screenWidth = screenHeight * Screen.width / Screen.height;
+        float currentAspectRatio = (float)Screen.width / Screen.height; // Get the current screen's aspect ratio
 
-        float spriteHeight = sr.sprite.bounds.size.y;
-        float spriteWidth = sr.sprite.bounds.size.x;
+        float scaleMultiplier = currentAspectRatio / referenceAspectRatio; // Scale based on aspect ratio difference
 
-        // Ensure full coverage without distortion
-        float scaleY = screenHeight / spriteHeight;
-        float scaleX = screenWidth / spriteWidth;
-        float finalScale = Mathf.Max(scaleX, scaleY); // Use the larger scale
+        Vector3 adjustedScale = new Vector3(
+            referenceScale.x * scaleMultiplier,
+            referenceScale.y * scaleMultiplier,
+            referenceScale.z * scaleMultiplier
+        );
 
-        // Apply scaling
-        transform.localScale = new Vector3(finalScale, finalScale, 1f);
+        transform.localScale = adjustedScale;
 
-        // Center the background
+        // Ensure background remains centered
         transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y, transform.position.z);
     }
 }
