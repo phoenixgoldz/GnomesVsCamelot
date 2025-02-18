@@ -10048,6 +10048,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: stump_energy_0
       objectReference: {fileID: 0}
+    - target: {fileID: 6370185350037542064, guid: 6a2b74c1fddd8a84bae05cde19b1c07e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

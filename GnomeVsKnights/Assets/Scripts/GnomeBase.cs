@@ -4,7 +4,7 @@ using UnityEngine;
 public class GnomeBase : CharacterBase
 {
     [Header("Gnome Settings")]
-    [SerializeField] private int cost = 25;
+    [SerializeField] public int cost = 25;
 
     public Vector3Int Cell { get; set; }
 
@@ -65,6 +65,7 @@ public class GnomeBase : CharacterBase
         {
             animator.SetTrigger("isDead");
         }
+        GameManager.Instance.KillGnome(Cell);
         Destroy(gameObject, 1f); // Allow animation to play before destroying
     }
 }
