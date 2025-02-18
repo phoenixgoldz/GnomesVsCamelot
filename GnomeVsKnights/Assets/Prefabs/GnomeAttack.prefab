@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8363253990909545680}
   - component: {fileID: 2448413380314749286}
   - component: {fileID: 3559268122122087183}
+  - component: {fileID: 2000055308893460840}
   m_Layer: 6
   m_Name: GnomeAttack
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.03, y: 0, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -107,4 +108,27 @@ MonoBehaviour:
   damage: 10
   attackLifespan: 2.5
   maxHits: 3
-  ProjectileSpeed: 10
+  projectileSpeed: 5
+  attackFXPrefab: {fileID: 0}
+--- !u!95 &2000055308893460840
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8236419659464331663}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9f4f82764aa47384da96f2a3a156abba, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
