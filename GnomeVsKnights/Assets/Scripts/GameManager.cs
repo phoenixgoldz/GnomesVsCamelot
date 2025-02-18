@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.UIElements;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -37,11 +38,12 @@ public class GameManager : Singleton<GameManager>
 
     public bool isFastForward = false;
 
+    private float dt = 0;
+
 
     private void Start()
     {
-        knightSpawnTimer = knightSpawnInterval;
-        UpdateEnergyUI();
+        knightSpawnTimer = knightSpawnInterval;        
         UpdateWaveUI();
         pauseMenu.SetActive(false);
         winnerPanel.SetActive(false);
@@ -51,6 +53,15 @@ public class GameManager : Singleton<GameManager>
     private void Update()
     {
         if (gameEnded) return;
+
+        dt += Time.deltaTime;
+        if (dt >= 1f)
+        {
+            var secondsPassed = Mathf.FloorToInt(dt);
+            playerEnergy += secondsPassed;
+            dt -= secondsPassed;
+        }
+        UpdateEnergyUI();
 
         int input = getInput(0);
         if (input == 1)
@@ -166,13 +177,18 @@ public class GameManager : Singleton<GameManager>
                     return;
                 }
 
-                GameObject gnome = Instantiate(fullGnomes[placementType]);
-                gnome.transform.position = GetWorld(at) + new Vector3(map.cellSize.x * 0.5f, map.cellSize.y * 0.5f, 0);
-                GnomeBase gnomeData = gnome.GetComponent<GnomeBase>();
-                gnomeData.Cell = at;
-                placedGnomes.Add(at, gnomeData);
+                if (playerEnergy > 0)
+                {
+                    GameObject gnome = Instantiate(fullGnomes[placementType]);
+                    gnome.transform.position = GetWorld(at) + new Vector3(map.cellSize.x * 0.5f, map.cellSize.y * 0.5f, 0);
+                    GnomeBase gnomeData = gnome.GetComponent<GnomeBase>();
+                    gnomeData.Cell = at;
+                    placedGnomes.Add(at, gnomeData);
 
-                Debug.Log($"Placed gnome of type {placementType} at {at}");
+                    Debug.Log($"Placed gnome of type {placementType} at {at}");
+
+                    playerEnergy -= 25;
+                }                
             }
             else
             {
