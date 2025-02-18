@@ -1,0 +1,704 @@
+fileFormatVersion: 2
+guid: a8f12a18ac8ea7945b1d0d7cdcdf5a95
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: stump_energy_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 388
+        width: 72
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a576ea4737d5f284ba791fc3865d0150
+      internalID: -381092378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stump_energy_1
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 388
+        width: 77
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee84a962c1ebfc84d894acb70260c3ee
+      internalID: 1954871395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stump_energy_2
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 388
+        width: 77
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8645dd13de8fc8342a213be57a25e249
+      internalID: -1181476032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stump_energy_3
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 439
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6258954f1a2ee244eacec96f22c81c28
+      internalID: -1991020309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stump_energy_4
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 388
+        width: 75
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4f67de6be224e34bbe6ad27eb694427
+      internalID: -426500210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stump_energy_5
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 276
+        width: 73
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3f58916772d2da42b4fdc752e5e482d
+      internalID: -528908362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stump_energy_6
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 276
+        width: 72
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5407bb7725977cb419b571ef7e146695
+      internalID: 1926899209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stump_energy_7
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 276
+        width: 72
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87bdb20f18f6439439d186e2fbacc75b
+      internalID: -178633887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stump_energy_8
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 276
+        width: 75
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bc8c76e659946542993cffd5d004c5f
+      internalID: -1524681997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stump_energy_9
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 319
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87183f523478f9348b15c5c3e92a6382
+      internalID: 798182501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stump_energy_16
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 160
+        width: 71
+        height: 102
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bb748c0008cfa84c9b70047d0b81180
+      internalID: 178893963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stump_energy_21
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 161
+        width: 70
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2141128cf3e529b4e9d86fc2c9c83638
+      internalID: 1138859935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stump_energy_25
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 160
+        width: 69
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 277b611be7a612e4582dd000ed56db9f
+      internalID: -894434701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stump_energy_30
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 160
+        width: 69
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bd0778d8ccfbae4ca3dd33525748118
+      internalID: -1237087240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stump_energy_31
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 211
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e35bac5dea75a1d4aad09b59f5158f9a
+      internalID: -802669051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stump_energy_32
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 212
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dcb25883fdea00428ae0765eb1c577b
+      internalID: -1015698202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stump_energy_33
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 160
+        width: 70
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2872e413fb533f4796954968a7d11d5
+      internalID: -1836919849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stump_energy_37
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 13
+        width: 72
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 254d1ca72ab90124198f6064925dd6c8
+      internalID: 1698730124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stump_energy_55
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 13
+        width: 70
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ebf969c7668cba4294e1b16d5cdb9a7
+      internalID: -1504488947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stump_energy_60
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 13
+        width: 69
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf2eb5f2044ec714b955388ab6c2a108
+      internalID: -1673296592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stump_energy_61
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 13
+        width: 70
+        height: 129
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 888b25f20b19e2441b5a2d8ee3cb8ea4
+      internalID: 1495747979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stump_energy_62
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 13
+        width: 73
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 680d5d960a81e044785cba1ba9d3eee7
+      internalID: 142682055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: f69c89dba3f4bf643b16529a2ff30b32
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      stump_energy_0: -381092378
+      stump_energy_1: 1954871395
+      stump_energy_10: -1456356122
+      stump_energy_11: -1932029168
+      stump_energy_12: -235641061
+      stump_energy_13: 107819531
+      stump_energy_14: 1227592118
+      stump_energy_15: -1079299046
+      stump_energy_16: 178893963
+      stump_energy_17: -1770916316
+      stump_energy_18: -789663554
+      stump_energy_19: 1289781632
+      stump_energy_2: -1181476032
+      stump_energy_20: -111774260
+      stump_energy_21: 1138859935
+      stump_energy_22: 1805029972
+      stump_energy_23: -811561686
+      stump_energy_24: -2025196034
+      stump_energy_25: -894434701
+      stump_energy_26: -1108805763
+      stump_energy_27: -670525150
+      stump_energy_28: 817448684
+      stump_energy_29: 677086715
+      stump_energy_3: -1991020309
+      stump_energy_30: -1237087240
+      stump_energy_31: -802669051
+      stump_energy_32: -1015698202
+      stump_energy_33: -1836919849
+      stump_energy_34: 1031529925
+      stump_energy_35: 1740560150
+      stump_energy_36: -408197781
+      stump_energy_37: 1698730124
+      stump_energy_38: 179754075
+      stump_energy_39: 1165203184
+      stump_energy_4: -426500210
+      stump_energy_40: 325306753
+      stump_energy_41: -298101562
+      stump_energy_42: -1026280907
+      stump_energy_43: -1982138470
+      stump_energy_44: 851753516
+      stump_energy_45: -1031205237
+      stump_energy_46: -1524484553
+      stump_energy_47: 1564782500
+      stump_energy_48: 1474707468
+      stump_energy_49: 1760232625
+      stump_energy_5: -528908362
+      stump_energy_50: -645589221
+      stump_energy_51: 1811224671
+      stump_energy_52: -1641693736
+      stump_energy_53: 2027188379
+      stump_energy_54: -32625696
+      stump_energy_55: -1504488947
+      stump_energy_56: 322812600
+      stump_energy_57: -1983442049
+      stump_energy_58: -1954801290
+      stump_energy_59: -1957552369
+      stump_energy_6: 1926899209
+      stump_energy_60: -1673296592
+      stump_energy_61: 1495747979
+      stump_energy_62: 142682055
+      stump_energy_63: -1112903911
+      stump_energy_7: -178633887
+      stump_energy_8: -1524681997
+      stump_energy_9: 798182501
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
